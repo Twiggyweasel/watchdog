@@ -1,0 +1,19 @@
+<%= form_for @person do |f| %>
+
+<%= f.label :name %>
+<%= f.text_field :name, class:'form-control' %>
+
+<%= f.label :image %>
+<%= f.file_field :image, class:'form-control' %>
+<%= f.label :height %>
+<%= f.text_field :height, class:'form-control' %>
+
+<%= f.label :weight %>
+<%= f.text_field :weight, class:'form-control' %>
+
+<%= f.label :reason %>
+<%= f.text_area :reason, class:'form-control' %>
+
+<br>
+<%= f.submit(@person.new_record? ? "Create Record" : "Edit Record", class:'btn btn-success btn-block') %>
+<% end %>

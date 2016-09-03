@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row m-t-2">
+        <div class="col-xs-12 text-xs-center">
+            <h2>Active BOLO and ATL's</h2>
+        </div>
+    </div>
+    <div class="row m-t-2">
+        <% @people.each do |person| %> 
+        <div class="col-xs-3">
+            <div class="card card-block text-xs-center" style="box-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32);">
+                <%= image_tag person.image.url, class:"img-fluid" %>
+                <h5 class="m-t-2">Person of Interest</h5>
+                <%= link_to(person_path(person)) do %><%= person.name %> <% end %>           
+                <br />
+                <%= person.height %> | <%= person.weight %>
+                <br />
+                <h5>Reason for Issue</h5>
+                <%= person.reason %>
+            </div>
+        </div>
+        <% end %>
+    </div>
+</div>
+
+
+
+
+
