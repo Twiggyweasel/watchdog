@@ -1,5 +1,6 @@
 class PeopleController < ApplicationController
-   
+before_action :require_user
+before_action :require_admin, only: [:new]
    def index
         @people = Person.all
    end
@@ -47,6 +48,6 @@ class PeopleController < ApplicationController
    
    private 
     def people_params
-      params.require(:person).permit(:name, :image, :height, :weight, :reason)
+      params.require(:person).permit(:name, :image, :height, :weight, :gender, :reason_short, :reason_detailed, :cfa, :contact, :archived)
     end
 end

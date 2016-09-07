@@ -1,0 +1,12 @@
+<%= form_for @user do |f| %>
+    <%= f.label :user, class:"l-2" %> 
+    <%= f.text_field :user_name, class:"form-control" %>
+    
+    <%= f.label :access, class: "l-2" %>
+    <%= f.text_field :access, class: "form-control" %>
+    
+    <%= f.label :password, class:"l-2" %>
+    <%= f.password_field :password, class: "form-control" %>
+    <br>
+    <%= f.submit(@user.new_record? ? "Create User" : "Edit User", class:'btn btn-success btn-block') %>
+<% end %>

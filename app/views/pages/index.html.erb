@@ -1,6 +1,4 @@
 <div class="container m-t-3">
-
-    
     <div class="row m-t-2">
         <div class="col-xs-6">
             <div class="card card-block text-xs-center" style="box-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32);">
@@ -9,7 +7,7 @@
                  <br />
                  <br />
 
-                 <%= link_to "Active Records", today_path, class:"btn btn-primary m-b-2" %>
+                 <%= link_to "Active Records", active_path, class:"color btn btn-primary m-b-2" %>
             </div>
         </div>
         
@@ -19,30 +17,42 @@
                  <i class="fa fa-history m-t-3" aria-hidden="true" style="font-size:65px;"></i>
                  <br />
                  <br />
-                 <%= link_to "Historical Records", historical_path, class:"btn btn-primary m-b-2" %>
+                 <%= link_to "Archived Records", archive_path, class:"color btn btn-primary m-b-2" %>
             </div>
         </div>
-        
     </div>
+    <% if current_user.access == "Admin" || current_user.access == "Management" || current_user.access == "Surveillance" || current_user.access == "Dispatcher"%>
     <div class="row m-t-2">
         <div class="col-xs-6">
             <div class="card card-block text-xs-center" style="box-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32);">
                
-                <i class="fa fa-user-plus m-t-3" aria-hidden="true" style="font-size:65px;"></i>
+                <i class="fa fa-map m-t-3" aria-hidden="true" style="font-size:65px;"></i>
                 <br />
                 <br />
-                 <%= link_to "Add Record", new_person_path, class:'btn btn-primary m-b-2' %>
+                 <%= link_to "Ameristar Information", property_path, class:'color btn btn-primary m-b-2' %>
             </div>
-        </div>
-        
+        </div>        
+
         <div class="col-xs-6">
             <div class="card card-block text-xs-center" style="box-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32);">
                 
-                 <i class="fa fa-pencil-square-o m-t-3" aria-hidden="true" style="font-size:65px;"></i>
+                 <i class="fa fa-lock m-t-3" aria-hidden="true" style="font-size:65px;"></i>
                  <br />
                  <br />
-                  <%= link_to "Edit Records", people_path, class:'btn btn-primary m-b-2' %>
+                  <%= link_to "Administrative Actions", admin_path, class:'color btn btn-primary m-b-2' %>
             </div>
         </div>
     </div>
+    <% else %>
+    <div class="row m-t-2">
+            <div class="center card card-block text-xs-center" style="box-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32);">
+               
+                <i class="fa fa-map m-t-3" aria-hidden="true" style="font-size:65px;"></i>
+                <br />
+                <br />
+                 <%= link_to "Ameristar Information", property_path, class:'color btn btn-primary m-b-2' %>
+            </div>
+    </div>    
+    <% end %>
 </div>
+

@@ -1,19 +1,52 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Watchdog</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-</head>
-<body>
-  
-  <div class="navbar navbar-dark bg-warning">
-    <%= link_to "Watchdog", :root, class: "navbar-brand"%>
-  </div>
-
-  <%= yield %>
-
-</body>
+  <head>
+    <title>Watchdog</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <%= favicon_link_tag 'favicon.ico' %>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  </head>
+  <body style="background: radial-gradient(circle, #cc0000, #840400); background: -moz-radial-gradient(circle, #CC0000, #840400);">
+    <div class="navbar-collapse collapse inverse" id="navbar-header">
+      <div class="nav-color container-fluid">
+        <div class="about">
+          <h4>About</h4>
+          <p id="about">Watchdog was created as a supplement to the assets security officers have at boardings. It's purpose is to provide property and departmental information at your fingertips, in an easy to use functional manner.</p>
+        </div>
+        <div class="social">
+          <%= image_tag "Ameristar-Logo.png", class:"m-y-2 m-x-auto d-block" %>
+        </div>
+      </div>
+    </div>
+    <div class="navbar navbar-static-top navbar-dark bg-inverse" style="background-color: #cc0000">
+      <div class="container-fluid" style="background-color: #cc0000">
+        <div class="navbar-exit">
+          <% if logged_in? %>
+          <%= link_to "Logout", logout_path, class:"color btn btn-primary" %>
+          <% else %>
+          <% end %>
+        </div>
+   
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-header">&#9776;</button>
+          <% if current_page?(root_path) || current_page?(login_path) %>
+          <%= link_to "Watchdog", root_path, class:"navbar-brand" %>
+          <% else %>
+            <% if current_page?(index_path) %>
+            <%= link_to "Watchdog", index_path, class:"navbar-brand" %>
+            <% else %>
+            <%= link_to "Home", index_path, class:"navbar-brand" %>
+            <% end %>
+          <% end %>
+          
+          
+      </div>
+    </div> 
+      <%= render 'layouts/messages' %>
+      <%= yield %>
+    <div class="footer">
+      <%= image_tag "Ameristar-Logo.png", class:"m-y-2 m-x-auto d-block" %>
+    </div>
+  </body>
 </html>

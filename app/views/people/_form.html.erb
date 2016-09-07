@@ -1,19 +1,72 @@
 <%= form_for @person do |f| %>
 
 <%= f.label :name %>
-<%= f.text_field :name, class:'form-control' %>
+<%= f.text_field :name, class:'m-b-1 form-control' %>
+
+<%= f.label :gender %>
+<br />
+<div class="col-xs-6">
+    <div class="input-group">
+        <span class="input-group-addon">
+        <%= radio_button_tag(:gender, "Male") %>
+        </span>
+        <%= label_tag(:gender_male, "Male", class:"form-control") %>
+    </div>
+</div>
+<div class="col-xs-6">
+    <div class="input-group">
+        <span class="input-group-addon">
+        <%= radio_button_tag(:gender, "Female") %>
+        </span>
+        <%= label_tag(:gender_female, "Female", class:"form-control") %>
+    </div>
+</div>
+<br />
+<div class="col-xs-6 m-y-1">
+<%= f.label :height %>
+<%= f.text_field :height, class:'m-b-1 form-control' %>
+</div>
+<div class="col-xs-6 m-y-1">
+<%= f.label :weight %>
+<%= f.text_field :weight, class:'m-b-1 form-control' %>
+</div>
+<%= f.label :incident_type %>
+<%= f.select :incident_type, options_for_select([['Intoxicated',"Intoxicated"],['Undesirable Activity', "Undesirable Activity"],['Panhandling',"Panhandling"]]),{:include_blank => true} , {:class => 'm-b-1 form-control'} %>
+
+<%= f.label :reason_short, "Brief Reason" %>
+<%= f.text_area :reason_short, class:'m-b-1 form-control' %>
+
+<%= f.label :reason_detailed, "Detailed Reason" %>
+<%= f.text_area :reason_detailed, class:'m-b-1 form-control' %>
 
 <%= f.label :image %>
-<%= f.file_field :image, class:'form-control' %>
-<%= f.label :height %>
-<%= f.text_field :height, class:'form-control' %>
+<%= f.file_field :image, class:'m-b-1 form-control' %>
+<div class="row">
+<div class="col-xs-4">
+    <div class="input-group">
+        <span class="input-group-addon">
+            <%= f.check_box :cfa %>
+        </span>
+            <%= f.label :cfa, "Approach?", class: "form-control" %>
+    </div>
+</div>
+<div class="col-xs-4">
+    <div class="input-group">
+        <span class="input-group-addon">
+            <%= f.check_box :contact %>
+        </span>
+            <%= f.label :contact, "Contact MGC?", class: "form-control" %>
+    </div>
+</div>
+<div class="col-xs-4">
+    <div class="input-group">
+        <span class="input-group-addon">
+            <%= f.check_box :archived %>
+        </span>
+            <%= f.label :archived, "Archive?", class: "form-control" %>
+    </div>
+</div>
+</div>
 
-<%= f.label :weight %>
-<%= f.text_field :weight, class:'form-control' %>
-
-<%= f.label :reason %>
-<%= f.text_area :reason, class:'form-control' %>
-
-<br>
-<%= f.submit(@person.new_record? ? "Create Record" : "Edit Record", class:'btn btn-success btn-block') %>
+<%= f.submit(@person.new_record? ? "Create Record" : "Edit Record", class:'m-t-2 color btn btn-success btn-block') %>
 <% end %>

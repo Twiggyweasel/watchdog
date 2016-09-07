@@ -11,16 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160901012650) do
+ActiveRecord::Schema.define(version: 20160906194606) do
+
+  create_table "events", force: :cascade do |t|
+    t.string "name"
+    t.string "location"
+    t.string "type"
+    t.string "time"
+    t.text   "details"
+    t.date   "date"
+  end
 
   create_table "people", force: :cascade do |t|
     t.string   "name"
     t.string   "image"
-    t.string   "height"
+    t.string   "gender"
     t.string   "weight"
-    t.text     "reason"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "height"
+    t.string   "incident_type"
+    t.text     "reason_short"
+    t.text     "reason_detailed"
+    t.boolean  "cfa",             default: false
+    t.boolean  "contact",         default: false
+    t.boolean  "archived",        default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "user_name"
+    t.string "access"
+    t.string "password_digest"
   end
 
 end

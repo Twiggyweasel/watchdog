@@ -1,13 +1,18 @@
 class PagesController < ApplicationController
+
+before_action :require_user
+    
     def index
         
     end
     
-    def day_display
-        @people = Person.where("created_at >= ?", Date.today)
+    def active
+        @people = Person.where(archived: [false, nil])
     end
     
-    def history_display
-        @people = Person.all
+    def archive
+        @people = Person.where(archived: [true])
     end
+    
+ 
 end

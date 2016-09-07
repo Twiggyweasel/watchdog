@@ -1,21 +1,45 @@
 <div class="container">
-    <div class="row m-t-2">
-        <div class="col-xs-12 text-xs-center">
-            <h2>Record for <%= @person.name %></h2>
-        </div>
-    </div>
-    <div class="row m-t-2">
-        <div class="col-xs-3"></div>
-        <div class="col-xs-6">
-            <div class="card card-block text-xs-center" style="box-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32);">
-                <%= image_tag @person.image.url, class:"img-fluid" %>
-                <br />
-                <%= @person.height %> | <%= @person.weight %>
-                <br />
-                <h5>Reason for Issue</h5>
-                <%= @person.reason %>
+    <div class="row">
+            <div class="m-y-2 card card-block well well-sm">
+                <div class="row">
+                    <div class="col-lg-6 col-md-4">
+                        <% if @person.image.blank? %>
+                        <%= image_tag "no-img.png", class:"border img-fluid" %> 
+                        <% else %>
+                        <%= image_tag person.image.url, class:"border img-fluid" %>
+                        <% end %>              
+<div class="border m-y-1 width-fix text-xs-center">
+    <h4>Name: <%= @person.name %></h4>
+
+</div>
+<div class="border width-fix text-xs-center">                        
+                 <%= link_to "Active Records", active_path(@person), class:'color btn btn-primary m-y-1' %>
+                 <%= link_to "Archived Records", archive_path(@person), class:'color btn btn-primary m-y-1' %>                 
+                 <% if current_user.access == "Admin" || current_user.access == "Management" || current_user.access == "Surveillance" || current_user.access == "Dispatcher"%>
+                 <%= link_to "Edit Record", edit_person_path(@person), class:'color btn btn-primary m-y-1' %>
+                 <% else %>
+                 <% end %>  
+</div>                 
+                    </div>
+                    <div class="height-fix-2 border width-fix col-lg-6 col-md-8">
+                        <h3 class="m-t-2 text-xs-center">Vitals</h3>
+                        Height: <%= @person.height %>
+                        <br />
+                        Weight: <%= @person.weight %> lb's
+                        <%= @person.gender %>
+                        <%= @person.incident_type %>
+                        <br />
+                        <h3 class="m-t-2 text-xs-center">Reason for Issue</h3>
+                        <%= @person.reason_short %>
+                        <%= @person.reason_detailed %>
+                        <h3 class="m-t-2 text-xs-center">If Sighted</h3>
+                        Cleared for Approach? <%= @person.cfa %>
+                        <br />
+                        Contact MGC? <%= @person.contact %>
+                        <br />
+                        <%= @person.created_at %>
+                    </div>
+                </div>
             </div>
         </div>
-
-    </div>
 </div>
