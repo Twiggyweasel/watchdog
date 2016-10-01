@@ -37,6 +37,8 @@ gem 'bcrypt', '~> 3.1.7'
 # Filterrific
 gem 'filterrific'
 
+gem 'paper_trail'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

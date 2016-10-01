@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160930224334) do
+ActiveRecord::Schema.define(version: 20161001160720) do
 
   create_table "clearances", force: :cascade do |t|
     t.string   "name"
@@ -100,5 +100,16 @@ ActiveRecord::Schema.define(version: 20160930224334) do
 
   add_index "users", ["clearance_id"], name: "index_users_on_clearance_id"
   add_index "users", ["department_id"], name: "index_users_on_department_id"
+
+  create_table "versions", force: :cascade do |t|
+    t.string   "item_type",                     null: false
+    t.integer  "item_id",                       null: false
+    t.string   "event",                         null: false
+    t.string   "whodunnit"
+    t.text     "object",     limit: 1073741823
+    t.datetime "created_at"
+  end
+
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
 
 end

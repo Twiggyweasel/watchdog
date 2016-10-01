@@ -1,5 +1,6 @@
 class Person < ActiveRecord::Base
     belongs_to :incident
+    has_paper_trail
     mount_uploader :image, ImageUploader
     
     #sets limit on number of records for will_paginate
