@@ -1,0 +1,26 @@
+<%# app/views/listings/_list.html.erb %>
+<div id="filterrific_results">
+
+  <div>
+    <%= page_entries_info listing # provided by will_paginate %>
+  </div>
+
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Department</th>
+      <th>Outside Line</th>
+      <th>Inside Line</th>
+    </tr>
+    <% @listing.each do |listing| %>
+      <tr>
+          <td><%= listing.location %></td>
+          <td><%= listing.department.name %></td>
+          <td><%= listing.phone_number %></td>
+          <td>Ext. <%= listing.extension %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<%= will_paginate students # provided by will_paginate %>

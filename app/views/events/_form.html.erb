@@ -1,0 +1,27 @@
+<%= form_for @events do |f| %>
+<div class="col-xs-6 m-b-1">
+<%= f.text_field :name, class:'form-height form-control', placeholder: "Event Name" %>
+</div>
+<div class="col-xs-6 m-b-1">
+<%= f.text_field :location, class:'form-height form-control', placeholder: "Event Location" %>
+</div>
+<div class="col-xs-4 m-b-1">
+<%= f.text_field :event_type, class:'form-height form-control', placeholder: "Type of Event" %>
+</div>
+<div class="col-xs-4 m-b-1">
+<%= f.text_field :time, class:'form-height form-control', placeholder: "Time of Event" %>
+</div>
+<div class="col-xs-4 m-b-1">
+<%= f.date_field :date, class:'form-height form-control' %>
+</div>
+
+<div class="col-xs-12 m-b-1">
+<%= f.text_area :details, class:'form-control', placeholder: "Event Details" %>
+</div>
+<div class="col-xs-6 m-b-1">
+<%= link_to "Cancel", events_path, class:"m-t-2 color btn btn-success btn-block" %>
+</div>
+<div class="col-xs-6 m-b-1">
+<%= f.submit(@events.new_record? ? "Create Record" : "Edit Record", class:'m-t-2 btn btn-success btn-block') %>
+</div>
+<% end %>

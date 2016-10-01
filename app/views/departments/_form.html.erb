@@ -1,0 +1,6 @@
+<%= form_for @department do |f| %>
+    <%= f.label :name %> 
+    <%= f.text_field :name, class:"form-control" %>
+    <br>
+    <%= f.submit(@department.new_record? ? "Create Department" : "Edit Department", class:'btn btn-success btn-block') %>
+<% end %>

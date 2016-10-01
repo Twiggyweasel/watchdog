@@ -1,0 +1,39 @@
+<%# app/views/events/_list.html.erb %>
+<div id="filterrific_results">
+
+  <div>
+    <%= page_entries_info events %>
+  </div>
+
+  <table class="table fix">
+    <tr>
+      <th>Event Name</th>
+      <th>Location</th>
+      <th>Type of Event</th>
+      <th>Date of Event</th>
+    </tr>
+    <% events.each do |event| %>
+      <tr class="modal-row" data-toggle="modal" data-target=".edit-destroy-<%= event.id %>">
+         <td><%= event.name %></td>
+         <td><%= event.location %></td>
+         <td><%= event.event_type %></td>
+         <td><%= event.date %></td>
+      </tr>
+<div class="modal edit-destroy-<%= event.id %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="v-c modal-dialog modal-sm">
+      <div class="container-fluid">
+        <h5 class="text-xs-center p-l-2" style="color: white"><%= event.name %></h5>
+        <div class="col-xs-12">
+          <%= link_to "Edit", edit_event_path(event), class:'color btn btn-primary btn-block m-y-1 m-x-1' %>
+        </div>
+        <div class="col-xs-12">     
+          <%= link_to "Delete", event,  method: :delete, data: { confirm: 'Are you sure?' }, class:'color btn btn-primary btn-block m-x-1 m-y-1' %>
+        </div>
+      </div>  
+  </div>
+</div>       
+    <% end %>
+  </table>
+</div>
+
+<%= will_paginate events %>

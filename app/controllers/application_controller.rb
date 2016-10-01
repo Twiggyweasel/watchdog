@@ -6,11 +6,11 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in?,:require_admin
   
   def current_user
-    @current_user ||= User.find_by(user_name: session[:user_name]) if session[:user_name]
+    @current_user ||= User.find_by(employee_num: session[:user]) if session[:user]
   end
   
   def logged_in?
-    !!session[:user_name]
+    !!session[:user]
 
   end
   
@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   end
   
   def require_admin
-    if current_user.access == "General Access"
+    if current_user.clearance_id != 1
       flash[:danger] = "You must be logged in as an admin to do that!"
       redirect_to :back
     end

@@ -1,53 +1,55 @@
 <%= form_for @person do |f| %>
-
-<%= f.label :name %>
-<%= f.text_field :name, class:'m-b-1 form-control' %>
-
-<%= f.label :gender %>
-<br />
-<div class="col-xs-6">
+<div class="col-xs-6 m-b-1">
+<%= f.text_field :name, class:'form-height form-control', placeholder: "Name" %>
+</div>
+<div class="col-xs-6 m-b-1">
+<%= f.select :incident_id, options_from_collection_for_select(Incident.all, :id, :name, @person.incident_id), {:prompt => "Select Incident Type"} , {:class => 'form-control'} %>
+</div>
+<div class="col-xs-6 m-b-1">
     <div class="input-group">
         <span class="input-group-addon">
-        <%= radio_button_tag(:gender, "Male") %>
+        <%= f.radio_button :gender, "Male" %>
         </span>
-        <%= label_tag(:gender_male, "Male", class:"form-control") %>
+        <%= f.label :gender_male, "Male", class:"form-height form-control" %>
     </div>
 </div>
-<div class="col-xs-6">
+<div class="col-xs-6 m-b-1">
     <div class="input-group">
         <span class="input-group-addon">
-        <%= radio_button_tag(:gender, "Female") %>
+        <%= f.radio_button :gender, "Female" %>
         </span>
-        <%= label_tag(:gender_female, "Female", class:"form-control") %>
+        <%= f.label :gender_female, "Female", class:"form-height form-control" %>
     </div>
 </div>
-<br />
-<div class="col-xs-6 m-y-1">
-<%= f.label :height %>
-<%= f.text_field :height, class:'m-b-1 form-control' %>
+<div class="col-xs-4 m-b-1">
+<%= f.text_field :age, class:'form-height form-control', placeholder: "Age" %>
 </div>
-<div class="col-xs-6 m-y-1">
-<%= f.label :weight %>
-<%= f.text_field :weight, class:'m-b-1 form-control' %>
+<div class="col-xs-4 m-b-1">
+<%= f.text_field :height, class:'form-height form-control', placeholder: "Height" %>
 </div>
-<%= f.label :incident_type %>
-<%= f.select :incident_type, options_for_select([['Intoxicated',"Intoxicated"],['Undesirable Activity', "Undesirable Activity"],['Panhandling',"Panhandling"]]),{:include_blank => true} , {:class => 'm-b-1 form-control'} %>
+<div class="col-xs-4 m-b-1">
+<%= f.text_field :weight, class:'form-height form-control', placeholder: "Weight" %>
+</div>
 
-<%= f.label :reason_short, "Brief Reason" %>
-<%= f.text_area :reason_short, class:'m-b-1 form-control' %>
-
-<%= f.label :reason_detailed, "Detailed Reason" %>
-<%= f.text_area :reason_detailed, class:'m-b-1 form-control' %>
-
-<%= f.label :image %>
-<%= f.file_field :image, class:'m-b-1 form-control' %>
-<div class="row">
+<div class="col-xs-6 m-b-1">
+<%= f.text_area :reason_short, class:'form-control', placeholder: "Brief reason for incident..." %>
+</div>
+<div class="col-xs-6 m-b-1">
+<%= f.text_area :wearing, class:'form-control', placeholder: "Details of clothing at time of incident..."%>
+</div>
+<div class="col-xs-12 m-b-1">
+<%= f.text_area :reason_detailed, class:'form-control', placeholder: "Detailed description of incident..." %>
+</div>
+<div class="col-xs-12 m-b-1">
+<%= f.label :image, "Image of Subject"  %>
+<%= f.file_field :image, class:'form-height-2 form-control', placeholder: "Image" %>
+</div>
 <div class="col-xs-4">
     <div class="input-group">
         <span class="input-group-addon">
             <%= f.check_box :cfa %>
         </span>
-            <%= f.label :cfa, "Approach?", class: "form-control" %>
+            <%= f.label :cfa, "Approach?", class: "form-height form-control" %>
     </div>
 </div>
 <div class="col-xs-4">
@@ -55,7 +57,7 @@
         <span class="input-group-addon">
             <%= f.check_box :contact %>
         </span>
-            <%= f.label :contact, "Contact MGC?", class: "form-control" %>
+            <%= f.label :contact, "Contact MGC?", class: "form-height form-control" %>
     </div>
 </div>
 <div class="col-xs-4">
@@ -63,10 +65,13 @@
         <span class="input-group-addon">
             <%= f.check_box :archived %>
         </span>
-            <%= f.label :archived, "Archive?", class: "form-control" %>
+            <%= f.label :archived, "Archive?", class: "form-height form-control" %>
     </div>
 </div>
+<div class="col-xs-6 m-b-1">
+<%= link_to "Cancel", people_path, class:"m-t-2 color btn btn-success btn-block" %>
 </div>
-
-<%= f.submit(@person.new_record? ? "Create Record" : "Edit Record", class:'m-t-2 color btn btn-success btn-block') %>
+<div class="col-xs-6 m-b-1">
+<%= f.submit(@person.new_record? ? "Create Record" : "Edit Record", class:'m-t-2 btn btn-success btn-block') %>
+</div>
 <% end %>

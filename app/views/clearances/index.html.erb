@@ -1,0 +1,20 @@
+<div class="row v-c">
+  <div class="col-xs-12">
+    <div class="card card-block">
+      <div class="container-fluid">
+        <table class="table">
+          <tr>
+            <th>Clearance ID</th>
+            <th>Clearance Name</th>
+          </tr>
+          <% @clearances.each do |clearance| %>
+          <tr>
+            <td><%= clearance.id %></td>
+            <td><%= clearance.name %></td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,25 +1,63 @@
-<div class="m-y-3 col-xs-3"></div>    
-    <div class="m-y-3 col-xs-6">
-        <div class=" m-y-3 card card-block text-xs-center" style="box-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32);">
-          <h2 class="login">Current User Accounts</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th id="users">User</th>
-                        <th class="text-xs-center" style="color:black">Access</th>
-                        <th id="edit-user">Edit | Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% @users.each do |user| %>
-                    <tr>
-                        <td id="users"><%= user.user_name %></td>
-                        <td style="color:black"><%= user.access %></td>
-                        <td><%= link_to(edit_user_path(user), class:'test btn btn-primary') do %><i class="fa fa-pencil"></i><% end %> | <%= link_to 'Delete', user, method: :delete, data: {confirm: 'Are you sure? (This can not be undone)'}, class:'test btn btn-danger' %></td>
-                    </tr>
-                    <% end %>
-                </tbody>
-            </table>
-            <%= link_to "Add User", user_create_path, class:"color btn btn-primary" %>
+<div class="row v-c">
+    <div class="m-y-2 col-md-12">
+        <div class="card card-block" style="box-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32); height: 597.75px;">
+          <div class="container-fluid">
+            <div class="row m-t-3">
+    <%= form_for_filterrific @filterrific do |f| %>
+    <div class="row">
+      <div class="col-xs-12">
+    <div class="pull-xs-right">
+      <%= link_to(
+      'Reset filters',
+      reset_filterrific_url, class:"color btn btn-sm btn-primary"
+    ) %>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+     <div class="col-xs-3">
+       Search
+       <%= f.text_field(
+      :search_query,
+      class: 'filterrific-periodically-observed form-control'
+    ) %>
+     </div>
+     <div class="col-xs-3">
+    Sorted by
+    <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by], {} , { class:"form-control"}) %>
+  </div>
+   <div class="col-xs-3">
+    Department
+    <%= f.select(
+      :with_deptartment_id,
+      @filterrific.select_options[:with_deptartment_id],
+      { include_blank: '- Any -' },
+      { class:"form-control" }
+    ) %>
+  </div>
+     <div class="col-xs-3">
+    Access
+    <%= f.select(
+      :with_clearance_id,
+      @filterrific.select_options[:with_clearance_id],
+      { include_blank: '- Any -' },
+      { class:"form-control" }
+    ) %>
+  </div>
+  </div>
+  <!--<#%= render_filterrific_spinner %>-->
+  <% end %>
+</div>
+<div class="row">
+    <%= render(
+  partial: 'users/list',
+  locals: { users: @userss }
+) %>
+</div>
+
         </div>
-    </div>  
+        </div>
+    </div>
+</div>    
+
+

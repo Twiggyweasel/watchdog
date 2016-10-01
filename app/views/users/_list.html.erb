@@ -1,0 +1,37 @@
+<div id="filterrific_results" style="height:399px;">
+  <div class="pull-xs-right m-t-1">
+ <%= page_entries_info users %>
+</div>
+<table class="table">
+          <tr>
+            <th>Employee Number</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Access Level</th>
+          </tr>
+          <% users.each do |user| %>
+          <tr  class="modal-row" data-toggle="modal" data-target=".edit-destroy-<%= user.id %>">
+            <td><%= user.employee_num %></td>
+            <td><%= user.first_name %> <%= user.last_name %></td>
+            <td><%= user.department.name %></td>
+            <td><%= user.clearance.name %></td>
+          </tr>
+<div class="modal edit-destroy-<%= user.id %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="v-c modal-dialog modal-sm">
+      <div class="container-fluid">
+        <h5 class="text-xs-center p-l-2" style="color: white"><%= user.first_name %> <%= user.last_name %></h5>
+        <div class="col-xs-12">
+          <%= link_to "Edit", edit_user_path(user), class:'color btn btn-primary btn-block m-y-1 m-x-1' %>
+        </div>
+        <div class="col-xs-12">     
+          <%= link_to "Delete", user,  method: :delete, data: { confirm: 'Are you sure?' }, class:'color btn btn-primary btn-block m-x-1 m-y-1' %>
+        </div>
+      </div>  
+  </div>
+</div>           
+          <% end %>
+        </table>
+ 
+  <%= link_to "Add User", new_user_path, class:"m-t-1 color btn btn-primary" %>
+  <%= will_paginate users, :page_links => false %>
+</div>

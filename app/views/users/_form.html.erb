@@ -1,12 +1,28 @@
 <%= form_for @user do |f| %>
-    <%= f.label :user, class:"l-2" %> 
-    <%= f.text_field :user_name, class:"form-control" %>
-    
-    <%= f.label :access, class: "l-2" %>
-    <%= f.text_field :access, class: "form-control" %>
-    
-    <%= f.label :password, class:"l-2" %>
-    <%= f.password_field :password, class: "form-control" %>
-    <br>
-    <%= f.submit(@user.new_record? ? "Create User" : "Edit User", class:'btn btn-success btn-block') %>
+    <div class="col-xs-6 m-b-1">
+    <%= f.text_field :employee_num, class:"form-control", placeholder: "Employee Number" %>
+    </div>
+    <div class="col-xs-6 m-b-1">    
+    <%= f.password_field :password, class: "form-control", placeholder: "Pin Number" %>
+    </div>
+    <div class="col-xs-6 m-b-1">
+    <%= f.text_field :first_name, class:"form-control", placeholder: "First Name" %>
+    </div>
+    <div class="col-xs-6 m-b-1">
+    <%= f.text_field :last_name, class:"form-control", placeholder: "Last Name" %>
+    </div>
+    <div class="col-xs-6 m-b-1">
+    <%= f.select :department_id, options_from_collection_for_select(Department.all, :id, :name, @user.department_id), {:prompt => "Employee Department"}, { :class => 'form-control' } %>    
+    </div>
+    <div class="col-xs-6 m-b-1">
+    <%= f.select :clearance_id, options_from_collection_for_select(Clearance.all, :id, :name, @user.clearance_id), {:prompt => "Access Level"}, { :class => 'form-control' } %>
+    </div>
+
+
+    <div class="col-xs-6 m-b-1">
+    <%= link_to "Cancel", users_path, class:"m-t-2 color btn btn-success btn-block" %>
+    </div>
+    <div class="col-xs-6 m-b-1">
+    <%= f.submit(@user.new_record? ? "Create User" : "Edit User", class:'m-t-2 btn btn-success btn-block') %>
+    </div>
 <% end %>

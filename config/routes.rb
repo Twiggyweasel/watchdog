@@ -1,33 +1,34 @@
 Rails.application.routes.draw do
   
   
+  get 'example/show'
+
   root 'logins#new'
-  
+
   resources :people
   resources :users
+  resources :listings
+  resources :departments
+  resources :clearances
+  resources :events
+  resources :constructions
+  resources :tips
+  
   # Boarding Routes
     #Main Page
       get 'index' => 'pages#index'
       get 'active' => 'pages#active'
       get 'archive' => 'pages#archive'
-      get 'property' => 'pages#property_public'
+      get 'property' => 'pages#property'
       get 'admin' => 'pages#admin'
         #Subdirectory
-          get 'information' => 'pages#information_public'
-          get 'events' => 'pages#events_public'
-          get 'security' => 'pages#security_public'
-          get 'directory' => 'pages#directory_public'
+          get 'maps' => 'pages#maps'
+          get 'venue' => 'pages#event'
+          get 'security' => 'pages#security'
+          get 'directory' => 'pages#directory'
   # Admin Routes
-  get 'records_admin' => 'pages#records_manager'
-  get 'property_admin' => 'pages#property_index'
-  get 'user_admin' => 'users#index'
-    #Subdirectory
-      get 'events_manager' => 'pages#events'
-      get 'property_manager' => 'pages#property'
-      get 'department_manager' => 'pages#security'
-      get 'directory_manager' => 'pages#directory'
-      get 'user_edit' => 'users#edit'
-      get 'user_create' => 'users#new'
+  get 'property_admin' => 'pages#admin_property'
+  get 'reference_admin' => 'pages#admin_references'
   # Authenticate
   get '/login', to: "logins#new"
   post '/login', to: "logins#create"

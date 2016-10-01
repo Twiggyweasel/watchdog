@@ -1,0 +1,22 @@
+<%= form_for @listing do |f| %>
+
+<div class="col-xs-6 m-b-1">
+<%= f.text_field :location, class:'m-b-1 form-control form-height', placeholder: "Location" %>
+</div>
+<div class="col-xs-6 m-b-1">
+<%= f.select :department_id, options_from_collection_for_select(Department.all, :id, :name, @listing.department_id), {:prompt => "Select Department"}, { :class => 'form-control m-b-1' } %>
+</div>
+<div class="col-xs-6 m-b-1">
+<%= f.text_field :phone_number, class:'m-b-1 form-control', placeholder: "Outside Line" %>
+</div>
+<div class="col-xs-6 m-b-1">
+<%= f.text_field :extension, class:'m-b-1 form-control', placeholder: "Inside Line" %>
+</div>
+
+<div class="col-xs-6 m-b-1">
+<%= link_to "Cancel", listings_path, class:"m-t-1 color btn btn-success btn-block" %>
+</div>
+<div class="col-xs-6 m-b-1">
+<%= f.submit(@listing.new_record? ? "Create Record" : "Edit Record", class:'m-t-1 btn btn-success btn-block') %>
+</div>
+<% end %>

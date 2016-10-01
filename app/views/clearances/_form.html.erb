@@ -1,0 +1,7 @@
+<%= form_for @clearance do |f| %>
+    <%= f.label :name %> 
+    <%= f.text_field :name, class:"form-control" %>
+
+    <br>
+    <%= f.submit(@clearance.new_record? ? "Create Clearance" : "Edit Clearance", class:'btn btn-success btn-block') %>
+<% end %>

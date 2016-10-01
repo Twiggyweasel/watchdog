@@ -1,0 +1,31 @@
+<div class="row v-c">
+    <div class="center m-y-2 col-xs-12">
+        <div class="card card-block" style="box-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32);">
+           <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>Outside Line</th>
+                        <th>Inside Line</th>
+                        <th>Edit | Delete</th>                        
+                    </tr>
+                </thead>
+                <tbody>
+                <% @listing.each do |listing| %>         
+                    <tr>
+                        <td><%= listing.location %></td>
+                        <td><%= listing.department.name %></td>
+                        <td><%= listing.phone_number %></td>
+                        <td>Ext. <%= listing.extension %></td>
+                        <td><%= link_to(edit_listing_path(listing), class:'btn btn-primary') do %><i class="fa fa-pencil"></i><% end %> | <%= link_to(listing, method: :delete, data:{confirm: 'Are you sure? (This can not be undone)'}, class:'btn btn-danger') do %><i class="fa fa-trash"></i><% end %></td>                        
+                    </tr>
+                    <% end %>
+
+                </tbody>
+            </table>
+            <%= link_to "Add Listing", new_listing_path, class:"color btn btn-primary" %>            
+        </div>
+    </div>
+</div>    
+<span class="octicon octicon-alert"></span>

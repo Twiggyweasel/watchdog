@@ -1,0 +1,125 @@
+<div class="row v-c">
+    <div class="container">
+        <div class="center col-xs-9">    
+            <div class="card card-block" style="box-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32); min-height:496px;">
+                <div class="container">
+                    <ul class="nav nav-pills p-l-1" role="tablist">
+                        <li class="nav-item m-t-1 m-l-1">
+                            <a class="color-dir nav-link active" data-toggle="tab" href="#access" role="tab">Access Level</a>
+                        </li>
+                        <li class="nav-item m-t-1 m-l-1">
+                            <a class="color-dir nav-link" data-toggle="tab" href="#department" role="tab">Departments</a>
+                        </li>
+                        <li class="nav-item m-t-1 m-l-1">
+                            <a class="color-dir nav-link" data-toggle="tab" href="#incidents" role="tab">Incidents</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="container">
+                    <div class="tab-content m-t-2">
+                        <div class="tab-pane active" id="clearance" role="tabpanel">
+                            <table class="table fix">
+                                <tr>
+                                    <th>Clearance Name</th>
+                                </tr>
+                                <% @clearances.each do |clearance| %>
+                                <tr>
+                                    <td><%= clearance.id %>. <%= clearance.name %></td>
+                                </tr>
+                                <% end %>
+                                </table>
+                                <!--<#%= will_paginate @clearances, :param_name => 'clearance_page', :page_links => false %>                              -->
+                        </div>
+                    
+                        <div class="tab-pane" id="department" role="tabpanel">
+                            <table class="table fix">
+                                <tr>
+                                    <th>Department Name</th>
+                                </tr>
+                                <% @departments.each do |department| %>
+                                <tr>
+                                    <td><%= department.id %>. <%= department.name %></td>
+                                </tr>
+                                <% end %>
+                                </table>
+                                <!--<#%= will_paginate @departments, :param_name => 'dept_page', :page_links => false %>                        -->
+                        </div>
+                        <div class="tab-pane" id="incidents" role="tabpanel">
+                            <table class="table fix">
+                                <tr>
+                                    <th>Incident Types</th>
+                                </tr>
+                                <% @incidents.each do |incident| %>
+                                <tr>
+                                    <td><%= incident.id %>. <%= incident.name %></td>
+                                </tr>
+                                <% end %>
+                                </table>
+                                <!--<#%= will_paginate @incidents, :param_name => 'incident_page', :page_links => false %>                        -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!--
+<div class="row v-c">         
+<div class="container">
+<div class="col-xs-4">
+<div class="card card-block" style="box-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32);">
+<table class="table fix">
+<tr>
+<th>Clearance Name</th>
+</tr>
+<3% @clearances.each do |clearance| %>
+<tr>
+<td><#%= clearance.id %>. <#%= clearance.name %></td>
+</tr>
+<#% end %>
+</table>
+<#%= will_paginate @clearances, :page_links => false %>   
+</div>
+</div>        
+<div class="col-xs-4">
+<div class="card card-block" style="box-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32);">
+<table class="table fix">
+<tr>
+<th>Department Name</th>
+</tr>
+<#% @departments.each do |department| %>
+<tr>
+<td><#%= department.id %>. <#%= department.name %></td>
+</tr>
+<#% end %>
+</table>
+<#%= will_paginate @departments, :page_links => false %>         
+</div>
+</div>
+<div class="col-xs-4">
+<div class="card card-block" style="box-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32);">
+<table class="table fix">
+<tr>
+<th>Incident Type</th>
+</tr>
+<#% @incidents.each do |incident| %>
+<tr>
+<td><#%= incident.id %>. <#%= incident.name %></td>
+</tr>
+<#% end %>
+</table>
+<#%= will_paginate @incidents, :page_links => false %>         
+</div>
+</div>
+</div>
+</div>
+-->

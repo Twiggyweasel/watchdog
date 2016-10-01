@@ -1,0 +1,62 @@
+<div class="row m-t-1"></div>
+<div class="row m-t-3">
+    <div class="col-xs-4 m-b-1">
+        <div class="row">
+            <div class="card card-block">
+                <h4 class="card-title">Name: <%= @listings.name %></h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="fixed-height card card-block">
+                <% if @person.image.blank? %>
+                        <%= image_tag "no-img.png", class:"border img-fluid" %> 
+                        <% else %>
+                        <%= image_tag @person.image.url, class:"border img-fluid" %>
+                        <% end %>              
+            </div>
+        </div>
+        
+    </div>
+    <div class="col-xs-1"></div>
+    <div class="col-xs-7">
+        <div class="row">
+            <div class="card card-block">
+                <h4 class="card-title">Information</h4>
+            </div>
+        </div>        
+        <div class="row">
+            <div class="fixed-height card card-block">
+                        Height: <%= @listing.name_first %>
+                        <br />
+                        Weight: <%= @person.weight %> lb's
+                        <%= @person.gender %>
+                        <%= @person.incident_type %>
+                        <br />
+                        <h6 class="m-t-2 text-xs-center">Reason for Issue</h6>
+                        <%= @person.reason_short %>
+                        <%= @person.reason_detailed %>
+                        <h6 class="m-t-2 text-xs-center">If Sighted</h6>
+                        Cleared for Approach? <%= @person.cfa ? "Yes" : "No" %>
+                        <br />
+                        Contact MGC? <%= @person.contact ? "Yes" : "No" %>
+                        <br />
+                        <%= @person.created_at %>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12">
+    <div class="row">
+        <div class="col-xs-2"></div>
+            <div class="col-xs-8">
+                <div class="card card-block text-xs-center">
+                     <%= link_to "Active Records", active_path(@person), class:'color btn btn-primary m-x-1 m-y-1' %>
+                     <%= link_to "Archived Records", archive_path(@person), class:'color btn btn-primary m-x-1 m-y-1' %>                 
+                     <% if current_user.clearance_id == 1 %>%>
+                     <%= link_to "Edit Record", edit_person_path(@person), class:'color btn btn-primary m-x-1 m-y-1' %>
+                     <% else %>
+                     <% end %>  
+                </div>
+            </div>
+        </div>   
+    </div>
+</div>

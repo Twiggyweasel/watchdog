@@ -1,3 +1,6 @@
+<!-- Backbone of Application    --*>
+<*-- Compiled and Error Checked --*>
+<*-- On 9/26/2016               --->
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,45 +11,79 @@
     <%= favicon_link_tag 'favicon.ico' %>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
   </head>
-  <body style="background: radial-gradient(circle, #cc0000, #840400); background: -moz-radial-gradient(circle, #CC0000, #840400);">
-    <div class="navbar-collapse collapse inverse" id="navbar-header">
-      <div class="nav-color container-fluid">
-        <div class="about">
-          <h4>About</h4>
-          <p id="about">Watchdog was created as a supplement to the assets security officers have at boardings. It's purpose is to provide property and departmental information at your fingertips, in an easy to use functional manner.</p>
-        </div>
-        <div class="social">
-          <%= image_tag "Ameristar-Logo.png", class:"m-y-2 m-x-auto d-block" %>
-        </div>
-      </div>
-    </div>
-    <div class="navbar navbar-static-top navbar-dark bg-inverse" style="background-color: #cc0000">
-      <div class="container-fluid" style="background-color: #cc0000">
-        <div class="navbar-exit">
-          <% if logged_in? %>
+  <body onload="startTime()">
+    <div class="height-keep navbar navbar-static-top navbar-dark bg-inverse">
+      <div class="container-fluid">
+        <div class="w navbar-exit">
+        <% if logged_in? %>
+          <% if current_user.clearance_id == 1 %>
+            <%= link_to "Admin", admin_path, class:"color btn btn-primary" %> |
+          <% else %>
+          <% end %>
           <%= link_to "Logout", logout_path, class:"color btn btn-primary" %>
           <% else %>
           <% end %>
         </div>
-   
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-header">&#9776;</button>
-          <% if current_page?(root_path) || current_page?(login_path) %>
-          <%= link_to "Watchdog", root_path, class:"navbar-brand" %>
-          <% else %>
-            <% if current_page?(index_path) %>
+        <div class="w navbar-home">
+        <% if logged_in? == true %>
+          <% if current_page?(index_path) %>
             <%= link_to "Watchdog", index_path, class:"navbar-brand" %>
-            <% else %>
-            <%= link_to "Home", index_path, class:"navbar-brand" %>
-            <% end %>
-          <% end %>
-          
-          
+          <% else %>
+            <%= link_to "Home", index_path, class:"color btn btn-primary" %> |
+            <%= link_to "Back", :back, class:"color btn btn-primary" %>
+          <% end %>            
+        <% else %>
+        <% end %>
+        </div>
       </div>
-    </div> 
-      <%= render 'layouts/messages' %>
-      <%= yield %>
-    <div class="footer">
-      <%= image_tag "Ameristar-Logo.png", class:"m-y-2 m-x-auto d-block" %>
     </div>
+    <% if current_page?(active_path) %>
+    <div class="container">
+      <%= render 'layouts/messages' %>
+        <%= yield %>
+    </div>
+    <% else %>
+    <div class="container">
+      <%= render 'layouts/messages' %>
+      <div class="row">
+        <%= yield %>
+      </div>
+    </div>
+    <% end %>
+    
+    <div class="height-keep navbar navbar-fixed-bottom navbar-dark bg-inverse">
+        <% if logged_in? == true %>
+        <ul class="pull-xs-right footer-clock nav navbar-nav" id="clock"></ul>
+        <ul class="pull-xs-right footer-buffer nav navbar-nav"><li class="w nav-item">|</li></ul>
+        <ul class="pull-xs-right footer-hour nav navbar-nav"><li class="modal-row-hour w nav-item" data-toggle="modal" data-target=".hoursModal">Hours of Operation</li></ul>        
+        <ul class="nav navbar-nav pull-xs-left" id="weather"></ul>      
+      <% else %>
+      <% end %>
+  </div>
+<div class="modal forecastModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="v-c modal-dialog modal-lg">
+<div class="container-fluid">
+<div class="col-xs-12">
+<div class="card card-block card-shadow text-xs-center">
+<table>
+<tr>
+<td id="forecast">
+</td>
+</tr>
+</table>
+</div>  
+</div>
+</div>
+</div>
+</div>
+<div class="modal hoursModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="v-c modal-dialog modal-lg">
+<div class="container-fluid">
+<h5 class="text-xs-center p-l-2" style="color: white">Test Hours, Please Ignore</h5>
+
+</div>
+</div>
+</div>
   </body>
 </html>
+

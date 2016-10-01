@@ -1,0 +1,43 @@
+<div id="filterrific_results" style="min-height:289px;">
+  <div class="pull-xs-right m-t-1">
+ <%= page_entries_info people %>
+</div>
+  <table class="table fix">
+    <tr>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Incident Type</th>
+        <th>Archived</th>
+        <th>Created</th>
+    </tr>
+    <% people.each do |person| %>
+      <tr class="modal-row" data-toggle="modal" data-target=".edit-destroy-<%= person.id %>">
+        <td><%= person.name %></td>
+        <td><%= person.gender %></td>
+        <td><%= person.incident.name %></td>
+        <td><%= person.archived ? "Yes" : "No" %></td>  
+        <td><%= person.created_at.strftime("%d %b. %Y") %></td>
+      </tr>
+
+      <div class="modal edit-destroy-<%= person.id %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="v-c modal-dialog modal-sm">
+      <div class="container-fluid">
+        <h5 class="text-xs-center p-l-2" style="color: white"><%= person.name %></h5>
+        <div class="col-xs-12">
+          <%= link_to "Full Record", person_path(person), class:'color btn btn-primary btn-block m-y-1 m-x-1' %>
+        </div>        
+        <div class="col-xs-12">
+          <%= link_to "Edit", edit_person_path(person), class:'color btn btn-primary btn-block m-y-1 m-x-1' %>
+        </div>
+        <div class="col-xs-12">     
+          <%= link_to "Delete", person,  method: :delete, data: { confirm: 'Are you sure?' }, class:'color btn btn-primary btn-block m-x-1 m-y-1' %>
+        </div>
+      </div>  
+  </div>
+</div> 
+      
+    <% end %>
+  </table>
+  
+  <%= will_paginate people, :page_links => false %>
+</div>
