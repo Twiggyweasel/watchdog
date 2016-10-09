@@ -1,7 +1,7 @@
-<%= form_for @department do |f| %>
+<%= form_for @incident do |f| %>
     <%= f.label :name %> 
     <%= f.text_field :name, class:"form-control" %>
     <br>
     <%= link_to "Cancel", reference_admin_path, class:"m-t-2 color btn btn-success btn-block" %>
-    <%= f.submit(@department.new_record? ? "Create Department" : "Edit Department", class:'btn btn-success btn-block') %>
+    <%= f.submit(@incident.new_record? ? "Create Incident Type" : "Edit Incident Type", class:'btn btn-success btn-block') %>
 <% end %>

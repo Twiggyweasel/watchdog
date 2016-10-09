@@ -1,208 +1,172 @@
 <div class="row v-c">
     <div class="container-fluid">
-    <div class="col-xs-4">
-        <div class="row">
-            <div class="card card-block">
-                <h4 class="card-title">Name: <%= @person.name %></h4>
-            </div>
-        </div>
-        <div class="row">
-            <div class="fixed-height card card-block">
-                <% if @person.image.blank? %>
-                    <a data-toggle="modal" data-target=".noimage">
-                        <%= image_tag "no-img.png", class:"border img-fluid" %> 
-                    </a>
-                        <% else %>
-                    <a data-toggle="modal" data-target=".image">
-                        <%= image_tag @person.image.url, class:"border img-fluid" %>
-                    </a>                        
-                        <% end %>              
-            </div>
-        </div>
-        
-    </div>
-    <div class="col-xs-1"></div>
-    <div class="col-xs-7">
-        <div class="row">
-            <div class="card card-block">
-                <h4 class="card-title">Information</h4>
-            </div>
-        </div>        
-        <div class="row">
-            <div class="fixed-height card card-block">
-                
-                <ul class="nav nav-pills" role="tablist" style="padding-left: 1rem;">
-  <li class="nav-item">
-    <a class="nav-link active" data-toggle="tab" href="#appearance" role="tab">Appearance</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#offense" role="tab">Offense</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#sighted" role="tab">If Sighted</a>
-  </li>
-</ul>
-
-<!-- Tab panes -->
-<div class="tab-content m-t-2">
-
-  <div class="tab-pane active" id="appearance" role="tabpanel">
-    <div class="container">
-    <div class="col-xs-6 m-y-1">
-        <span>
-            <h6>Height:</h6> <%= @person.height %>
-        </span>
-    </div>
-    <div class="col-xs-6 m-y-1">
-        <span>
-            <h6>Weight:</h6> <%= @person.weight %> lb's
-        </span>
-    </div>
-    <div class="col-xs-6 m-y-1">
-        <span>
-            <h6>Gender:</h6> <%= @person.gender %>
-        </span>
-    </div>
-    <div class="col-xs-6 m-y-1">
-        <span>
-            <h6>Age:</h6> <%= @person.age %>
-        </span>
-    </div>  
-    <div class="col-xs-8 m-y-1">
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingTwo">
-              <h6 class="panel-title">
-                <a class="color btn btn-primary collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Clothing Description
-                </a>
-              </h6>
-            </div>
-            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                <% if @person.wearing == "" || nil %>
-                    No Description Available
-                <% else %>
-                <%= @person.wearing %>
-                <% end %>
-            </div>
-        </div>
-    </div> 
-    </div>
-  </div>
-  <div class="tab-pane" id="offense" role="tabpanel">
-    <div class="container">
-    <div class="col-xs-12 p-b-2 m-b-2">
-        <span class="p-b-3">
-            <h6>Offense Overview:</h6> 
-            <% if @person.reason_short == "" || nil %>
-            No Offense Overview Available
-            <% else %>
-            <%= @person.reason_short %>
-            <% end %>
-        </span>
-    </div>
-    <div class="col-xs-12">
-      <div id="accordion" role="tablist" aria-multiselectable="true">
-      <div class="panel panel-default">
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingTwo">
-      <h4 class="panel-title">
-        <a class="color btn btn-primary collapsed" data-toggle="collapse" data-parent="#accordion" href="#detailed" aria-expanded="false" aria-controls="detailed">
-          Offense Detailed
-        </a>
-      </h4>
-    </div>
-    <div id="detailed" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-        <% if @person.reason_detailed == "" || nil %>
-        No Offense Details Available
-        <% else %>
-        <%= @person.reason_detailed %>
-        <% end %>      
-    </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  <div class="tab-pane" id="sighted" role="tabpanel">
-      <div class="container">
-      <div class="col-xs-12">
-        <span>
-            <p>All officers should follow procedure if this person of interest is sighted, contact Dispatch via radio or phone and get surveillance coverage at the earliest convience.</p>
-        </span>
-        </div> 
-    
-    <div class="col-xs-6 m-y-1">
-        <span>
-            <h6>Cleared for Approach?</h6> <%= @person.cfa ? "Yes" : "No" %>
-        </span>
-    </div> 
-    <div class="col-xs-6 m-y-1">
-        <span>
-            <h6>Contact Missouri Gaming?</h6> <%= @person.contact ? "Yes" : "No" %>
-        </span>
-    </div>     
-    <div class="col-xs-6 m-y-1">
-        <span>
-            <h6>Created on:</h6> <%= @person.created_at.strftime("%d %b. %Y") %>
-        </span>
-    </div> 
-  </div>
-  </div>
-</div>
-                        <!--<h6 class="text-xs-center">Physical Appearance</h6>                -->
-                        <!--Height: <#%= @person.height %>-->
-                        <!--<br />-->
-                        <!--Weight: <#%= @person.weight %> lb's-->
-                        <!--<br />-->
-                        <!--<#%= @person.gender %>-->
-                        <!--<br />-->
-                        <!--<h6 class="text-xs-center">Offense</h6>-->
-                        <!--<#%= @person.incident_type %>-->
-                        <!--<br />-->
-                        <!--Detail:-->
-                        <!--<#%= @person.reason_short %>-->
-                        <!--<#%= @person.reason_detailed %>-->
-                        <!--<h6 class="text-xs-center">If Sighted</h6>-->
-                        <!--Cleared for Approach? <#%= @person.cfa ? "Yes" : "No" %>-->
-                        <!--<br />-->
-                        <!--Contact MGC? <#%= @person.contact ? "Yes" : "No" %>-->
-                        <!--<br />-->
-                        <!--<#%= @person.created_at.strftime("%d %b. %Y") %>-->
-            </div>
-        </div>
-    </div>
-   <!--
-    <div class="col-xs-12">
-    <div class="row">
-        <div class="col-xs-2"></div>
-            <div class="col-xs-8">
-                <div class="card card-block text-xs-center">
-                     <%= link_to "Active Records", active_path(@person), class:'color btn btn-primary m-x-1 m-y-1' %>
-                     <%= link_to "Archived Records", archive_path(@person), class:'color btn btn-primary m-x-1 m-y-1' %>                 
-                     <% if current_user.clearance_id == 1 %>
-                     <%= link_to "Edit Record", edit_person_path(@person), class:'color btn btn-primary m-x-1 m-y-1' %>
-                     <% else %>
-                     <% end %>  
+        <div class="col-xs-4">
+            <div class="row">
+                <div class="card card-block shadow">
+                    <h4 class="card-title">Name: <%= @person.name %></h4>
                 </div>
             </div>
-        </div>   
-    </div> -->
-</div>
-</div>
+            <div class="row">
+                <div class="fixed-height card card-block shadow">
+                    <% if @person.image.blank? %>
+                        <a data-toggle="modal" data-target=".noimage">
+                            <%= image_tag "no-img.png", class:"border img-fluid" %> 
+                        </a>
+                    <% else %>
+                        <a data-toggle="modal" data-target=".image">
+                            <%= image_tag @person.image.url, class:"border img-fluid" %>
+                        </a>                        
+                    <% end %>              
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-1"></div>
+        <div class="col-xs-7">
+            <div class="row">
+                <div class="card card-block shadow">
+                    <h4 class="card-title">Information</h4>
+                </div>
+            </div>        
+            <div class="row">
+                <div class="fixed-height card card-block shadow">
+                    <ul class="nav nav-pills" role="tablist" style="padding-left: 1rem;">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#appearance" role="tab">Appearance</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#offense" role="tab">Offense</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#sighted" role="tab">If Sighted</a>
+                        </li>
+                    </ul>
+<!-- Tab panes -->
+                <div class="tab-content m-t-2">
+                    <div class="tab-pane active" id="appearance" role="tabpanel">
+                        <div class="container">
+                            <div class="col-xs-6 m-y-1">
+                                <span>
+                                    <h6>Height:</h6> <%= @person.height %>
+                                </span>
+                            </div>
+                            <div class="col-xs-6 m-y-1">
+                                <span>
+                                    <h6>Weight:</h6> <%= @person.weight %> lb's
+                                </span>
+                            </div>
+                            <div class="col-xs-6 m-y-1">
+                                <span>
+                                    <h6>Gender:</h6> <%= @person.gender %>
+                                </span>
+                            </div>
+                            <div class="col-xs-6 m-y-1">
+                                <span>
+                                    <h6>Age:</h6> <%= @person.age %>
+                                </span>
+                            </div>  
+                            <div class="col-xs-8 m-y-1">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingTwo">
+                                        <h6 class="panel-title">
+                                            <a class="color btn btn-primary collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                Clothing Description
+                                            </a>
+                                        </h6>
+                                    </div>
+                                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                        <% if @person.wearing == "" || nil %>
+                                            No Description Available
+                                        <% else %>
+                                            <%= @person.wearing %>
+                                        <% end %>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="offense" role="tabpanel">
+                        <div class="container">
+                            <div class="col-xs-12 p-b-2 m-b-2">
+                                <span class="p-b-3">
+                                    <h6>Offense Overview:</h6> 
+                                    <% if @person.reason_short == "" || nil %>
+                                        No Offense Overview Available
+                                    <% else %>
+                                        <%= @person.reason_short %>
+                                    <% end %>
+                                </span>
+                            </div>
+                            <div class="col-xs-12">
+                                <div id="accordion" role="tablist" aria-multiselectable="true">
+                                    <div class="panel panel-default">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading" role="tab" id="headingTwo">
+                                                <h4 class="panel-title">
+                                                    <a class="color btn btn-primary collapsed" data-toggle="collapse" data-parent="#accordion" href="#detailed" aria-expanded="false" aria-controls="detailed">
+                                                        Offense Detailed
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                                <div id="detailed" class="detail-h panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                                    <% if @person.reason_detailed == "" || nil %>
+                                                        No Offense Details Available
+                                                    <% else %>
+                                                        <%= @person.reason_detailed %>
+                                                    <% end %>      
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="sighted" role="tabpanel">
+                            <div class="container">
+                                <div class="col-xs-12">
+                                    <span>
+                                        <p>All officers should follow procedure if this person of interest is sighted, contact Dispatch via radio or phone and get surveillance coverage at the earliest convience.</p>
+                                    </span>
+                                </div> 
+                                <div class="col-xs-6 m-y-1">
+                                    <span>
+                                        <h6>Cleared for Approach?</h6> <%= @person.cfa ? "Yes" : "No" %>
+                                    </span>
+                                </div> 
+                                <div class="col-xs-6 m-y-1">
+                                    <span>
+                                        <h6>Contact Missouri Gaming?</h6> <%= @person.contact ? "Yes" : "No" %>
+                                    </span>
+                                </div>     
 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="card card-block shadow"> 
+                    <div class="col-xs-12 m-y-1 text-xs-center">
+                        <span>This record was created on, <%= @person.created_at.strftime("%D") %>, by <%= @versions.whodunnit %>. It is set to be archived, (placeholder - still coding)</span>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Image Modals -->
 <div class="modal noimage" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="v-c modal-dialog modal-lg" style="height: 50%; width: 50%;">
-    <div class="modal-content">
-    <%= image_tag "no-img.png", class:"img-fluid" %>
+    <div class="v-c modal-dialog modal-lg" style="height: 50%; width: 50%;">
+        <div class="modal-content">
+            <%= image_tag "no-img.png", class:"img-fluid" %>
+        </div>
     </div>
-  </div>
 </div>
-
 <div class="modal image" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="v-c modal-dialog modal-lg" style="height: 50%; width: 50%;">
-    <div class="modal-content">
-    <%= image_tag @person.image.url, class:"img-fluid" %>
+    <div class="v-c modal-dialog modal-lg" style="height: 50%; width: 50%;">
+        <div class="modal-content">
+            <%= image_tag @person.image.url, class:"img-fluid" %>
+        </div>
     </div>
-  </div>
 </div>

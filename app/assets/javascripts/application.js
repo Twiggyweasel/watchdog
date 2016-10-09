@@ -75,7 +75,7 @@ function checkTime(i) {
       html += '<ul class="nav"><li class="nav-item m-b-2">'+weather.city+', '+weather.region+'</li>';
       
       for(var i=0;i<weather.forecast.length;i++) {
-        html += '<div class="col-md-12 m-b-1"><span class="left" style="width: 100%;"><h6>'+weather.forecast[i].day+', '+weather.forecast[i].date+'</h6></span><div class="container"><div class="col-sm-4" style="margin-top: .5rem;">High: '+weather.forecast[i].high+'&deg; '+weather.units.temp+'</div><div class="col-sm-4" style="margin-top: .5rem;"> Low: '+weather.forecast[i].low+'&deg; '+weather.units.temp+'</div><div class="col-sm-4"><img src='+weather.forecast[i].thumbnail+'> '+weather.forecast[i].text+'</div></div></div>';
+        html += '<div id="accordion" role="tablist" aria-multiselectable="true"><div class="panel panel-default"><div class="panel-heading" role="tab" id="headingTwo"><h6 class="panel-title"><a class="color forecast-w btn btn-primary collapsed" data-toggle="collapse" data-parent="#accordion" href="#weather'+[i]+'" aria-expanded="false" aria-controls="weather'+[i]+'">'+weather.forecast[i].day+', '+weather.forecast[i].date+'</a></h6></div><div id="weather'+[i]+'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo"><div class="container-fluid forecast-con-fix"><div class="col-md-12 forecast-col-fix"><div class="col-sm-3" style="margin-top: .5rem;">High: '+weather.forecast[i].high+'&deg; '+weather.units.temp+'</div><div class="col-sm-6"><img src='+weather.forecast[i].thumbnail+'> '+weather.forecast[i].text+'</div><div class="col-sm-3" style="margin-top: .5rem;">Low: '+weather.forecast[i].low+'&deg; '+weather.units.temp+'</div></div></div></div></div></div>';
       }
   
       $("#forecast").html(html);
@@ -85,3 +85,24 @@ function checkTime(i) {
     }
   });
 });
+
+function toggleFullScreen() {
+  if ((document.fullScreenElement && document.fullScreenElement !== null) ||    
+   (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+    if (document.documentElement.requestFullScreen) {  
+      document.documentElement.requestFullScreen();  
+    } else if (document.documentElement.mozRequestFullScreen) {  
+      document.documentElement.mozRequestFullScreen();  
+    } else if (document.documentElement.webkitRequestFullScreen) {  
+      document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);  
+    }  
+  } else {  
+    if (document.cancelFullScreen) {  
+      document.cancelFullScreen();  
+    } else if (document.mozCancelFullScreen) {  
+      document.mozCancelFullScreen();  
+    } else if (document.webkitCancelFullScreen) {  
+      document.webkitCancelFullScreen();  
+    }  
+  }  
+}

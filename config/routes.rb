@@ -13,22 +13,26 @@ Rails.application.routes.draw do
   resources :events
   resources :constructions
   resources :tips
-  
+  resources :hours
+  resources :incidents
+
   # Boarding Routes
     #Main Page
       get 'index' => 'pages#index'
       get 'active' => 'pages#active'
       get 'archive' => 'pages#archive'
+      get 'security' => 'pages#security'
       get 'property' => 'pages#property'
-      get 'admin' => 'pages#admin'
+      get 'admin_home' => 'pages#admin'
         #Subdirectory
           get 'maps' => 'pages#maps'
           get 'venue' => 'pages#event'
-          get 'security' => 'pages#security'
           get 'directory' => 'pages#directory'
   # Admin Routes
-  get 'property_admin' => 'pages#admin_property'
-  get 'reference_admin' => 'pages#admin_references'
+  get 'property_admin' => 'admin#admin_property'
+  get 'reference_admin' => 'admin#admin_references'
+  get 'security_admin' => 'admin#admin_security'
+  get 'logs_admin' => 'admin#admin_logs'
   # Authenticate
   get '/login', to: "logins#new"
   post '/login', to: "logins#create"

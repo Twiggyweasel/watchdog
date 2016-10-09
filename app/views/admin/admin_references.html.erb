@@ -1,0 +1,405 @@
+<div class="row m-t-3">
+    <div class="col-xs-3">
+        <div class="card shadow card-block" >
+            <h6 class="text-xs-center">Departments</h6>
+            <table class="table fix">
+                <tr>
+                    <th class="th-fix">ID</th>
+                    <th class="th-fix">Name</th>
+                </tr>
+                <tbody class="department-tab">
+                <% @departments.each do |department| %>
+                <tr class="modal-row" data-toggle="modal" data-target=".view-departments-<%= department.id %>">
+                    <td class="department-detail"><%= department.id %></td>
+                    <td class="department-detail text-xs-center"><%= department.name %></td>
+                </tr>
+                <!-- Departments Modal -->
+                    <div class="modal view-departments-<%= department.id %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                        <div class="v-c modal-dialog modal-sm">
+                            <div class="container-fluid">
+                                <h5 class="text-xs-center p-l-2" style="color: white"><%= department.name %></h5>
+                                <div class="col-xs-12">
+                                    <%= link_to "Edit", edit_department_path(department), class:'color btn btn-primary btn-block m-y-1 m-x-1' %>
+                                </div>
+                                <div class="col-xs-12">     
+                                    <%= link_to "Delete", department,  method: :delete, data: { confirm: 'Are you sure?' }, class:'color btn btn-primary btn-block m-x-1 m-y-1' %>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>                                  
+                <% end %>
+                </tbody>
+            </table> 
+            <%= link_to "Add Department", new_department_path, class:'color btn btn-primary' %>                                     
+        </div>
+    </div>
+    <div class="col-xs-3">
+        <div class="card shadow card-block" >
+            <h6 class="text-xs-center">Incidents</h6>
+            <table class="table fix">
+                <tr>
+                    <th class="th-fix">ID</th>
+                    <th class="th-fix">Type</th>
+                </tr>
+                <tbody class="incident-tab">
+                <% @incidents.each do |incident| %>
+                <tr class="modal-row" data-toggle="modal" data-target=".view-incidents-<%= incident.id %>">
+                    <td class="incident-detail"><%= incident.id %></td>
+                    <td class="incident-detail text-xs-center"><%= incident.name %></td>
+                </tr>
+                <!-- Incidents Modal -->
+                    <div class="modal view-incidents-<%= incident.id %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                        <div class="v-c modal-dialog modal-sm">
+                            <div class="container-fluid">
+                                <h5 class="text-xs-center p-l-2" style="color: white"><%= incident.name %></h5>
+                                <div class="col-xs-12">
+                                    <%= link_to "Edit", edit_incident_path(incident), class:'color btn btn-primary btn-block m-y-1 m-x-1' %>
+                                </div>
+                                <div class="col-xs-12">     
+                                    <%= link_to "Delete", incident,  method: :delete, data: { confirm: 'Are you sure?' }, class:'color btn btn-primary btn-block m-x-1 m-y-1' %>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>                                  
+                <% end %>
+                </tbody>
+            </table>
+            <%= link_to "Add Incident", new_incident_path, class:'color btn btn-primary' %>                                         
+        </div>
+    </div>
+    <div class="col-xs-3">
+        <div class="card shadow card-block" >
+            <h6 class="text-xs-center">Access Levels</h6>
+            <table class="table fix">
+                <tr>
+                    <th class="th-fix">ID</th>
+                    <th class="th-fix">Name</th>
+                </tr>
+                <tbody class="incident-tab">
+                <% @clearances.each do |access| %>
+                <tr class="modal-row" data-toggle="modal" data-target=".view-access-<%= access.id %>">
+                    <td class="incident-detail"><%= access.id %></td>
+                    <td class="incident-detail text-xs-center"><%= access.name %></td>
+                </tr>
+                <!-- Access Modal -->
+                    <div class="modal view-access-<%= access.id %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                        <div class="v-c modal-dialog modal-sm">
+                            <div class="container-fluid">
+                                <h5 class="text-xs-center p-l-2" style="color: white"><%= access.name %></h5>
+                                <div class="col-xs-12">
+                                    <%= link_to "Edit", edit_clearance_path(access), class:'color btn btn-primary btn-block m-y-1 m-x-1' %>
+                                </div>
+                                <div class="col-xs-12">     
+                                    <%= link_to "Delete", access,  method: :delete, data: { confirm: 'Are you sure?' }, class:'color btn btn-primary btn-block m-x-1 m-y-1' %>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>                                  
+                <% end %>
+                </tbody>
+            </table>
+            <%= link_to "Add Access Level", new_clearance_path, class:'color btn btn-primary' %>        
+        </div>
+    </div>
+    <div class="col-xs-3">
+        <div class="card shadow card-block" >
+            <h6 class="text-xs-center">Streescape</h6>
+            <table class="table fix">
+                <tr>
+                    <th class="th-fix">ID</th>
+                    <th class="th-fix">Business</th>
+                </tr>
+                <tbody class="incident-tab">
+                <% @hours.each do |hour| %>
+                <tr class="modal-row" data-toggle="modal" data-target=".view-hour-<%= hour.id %>">
+                    <td class="incident-detail"><%= hour.id %></td>
+                    <td class="incident-detail text-xs-center"><%= hour.restaurant_name %></td>
+                </tr>
+                <!-- Incidents Modal -->
+                    <div class="modal view-hour-<%= hour.id %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                        <div class="v-c modal-dialog modal-sm">
+                            <div class="container-fluid">
+                                <h5 class="text-xs-center p-l-2" style="color: white"><%= hour.restaurant_name %></h5>
+                                <div class="col-xs-12">
+                                    <%= link_to "Edit", edit_hour_path(hour), class:'color btn btn-primary btn-block m-y-1 m-x-1' %>
+                                </div>
+                                <div class="col-xs-12">     
+                                    <%= link_to "Delete", hour,  method: :delete, data: { confirm: 'Are you sure?' }, class:'color btn btn-primary btn-block m-x-1 m-y-1' %>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>                                  
+                <% end %>
+                </tbody>
+            </table>
+            <%= link_to "Add Business", new_hour_path, class:'color btn btn-primary' %>        
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-3">
+        <div class="card shadow card-block" >
+            <h6 class="text-xs-center">Construction Type</h6>
+            <table class="table fix">
+                <tr>
+                    <th class="th-fix">ID</th>
+                    <th class="th-fix">Type</th>
+                </tr>
+                <tbody class="incident-tab">
+                <% @incidents.each do |incident| %>
+                <tr class="modal-row" data-toggle="modal" data-target=".view-incidents-<%= incident.id %>">
+                    <td class="incident-detail"><%= incident.id %></td>
+                    <td class="incident-detail text-xs-center"><%= incident.name %></td>
+                </tr>
+                <!-- Incidents Modal -->
+                    <div class="modal view-incidents-<%= incident.id %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                        <div class="v-c modal-dialog modal-sm">
+                            <div class="container-fluid">
+                                <h5 class="text-xs-center p-l-2" style="color: white"><%= incident.name %></h5>
+                                <div class="col-xs-12">
+                                    <%= link_to "Edit", edit_incident_path(incident), class:'color btn btn-primary btn-block m-y-1 m-x-1' %>
+                                </div>
+                                <div class="col-xs-12">     
+                                    <%= link_to "Delete", incident,  method: :delete, data: { confirm: 'Are you sure?' }, class:'color btn btn-primary btn-block m-x-1 m-y-1' %>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>                                  
+                <% end %>
+                </tbody>
+            </table>
+            <%= link_to "Add Incident", new_incident_path, class:'color btn btn-primary' %>        
+        </div>
+    </div>
+    <div class="col-xs-3">
+        <div class="card shadow card-block" >
+            <h6 class="text-xs-center">Venues</h6>
+            <table class="table fix">
+                <tr>
+                    <th class="th-fix">ID</th>
+                    <th class="th-fix">Type</th>
+                </tr>
+                <tbody class="incident-tab">
+                <% @incidents.each do |incident| %>
+                <tr class="modal-row" data-toggle="modal" data-target=".view-incidents-<%= incident.id %>">
+                    <td class="incident-detail"><%= incident.id %></td>
+                    <td class="incident-detail text-xs-center"><%= incident.name %></td>
+                </tr>
+                <!-- Incidents Modal -->
+                    <div class="modal view-incidents-<%= incident.id %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                        <div class="v-c modal-dialog modal-sm">
+                            <div class="container-fluid">
+                                <h5 class="text-xs-center p-l-2" style="color: white"><%= incident.name %></h5>
+                                <div class="col-xs-12">
+                                    <%= link_to "Edit", edit_incident_path(incident), class:'color btn btn-primary btn-block m-y-1 m-x-1' %>
+                                </div>
+                                <div class="col-xs-12">     
+                                    <%= link_to "Delete", incident,  method: :delete, data: { confirm: 'Are you sure?' }, class:'color btn btn-primary btn-block m-x-1 m-y-1' %>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>                                  
+                <% end %>
+                </tbody>
+            </table>
+            <%= link_to "Add Incident", new_incident_path, class:'color btn btn-primary' %>        
+        </div>
+    </div>
+    <div class="col-xs-3">
+        <div class="card shadow card-block" >
+            <h6 class="text-xs-center">Event Type</h6>
+            <table class="table fix">
+                <tr>
+                    <th class="th-fix">ID</th>
+                    <th class="th-fix">Type</th>
+                </tr>
+                <tbody class="incident-tab">
+                <% @incidents.each do |incident| %>
+                <tr class="modal-row" data-toggle="modal" data-target=".view-incidents-<%= incident.id %>">
+                    <td class="incident-detail"><%= incident.id %></td>
+                    <td class="incident-detail text-xs-center"><%= incident.name %></td>
+                </tr>
+                <!-- Incidents Modal -->
+                    <div class="modal view-incidents-<%= incident.id %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                        <div class="v-c modal-dialog modal-sm">
+                            <div class="container-fluid">
+                                <h5 class="text-xs-center p-l-2" style="color: white"><%= incident.name %></h5>
+                                <div class="col-xs-12">
+                                    <%= link_to "Edit", edit_incident_path(incident), class:'color btn btn-primary btn-block m-y-1 m-x-1' %>
+                                </div>
+                                <div class="col-xs-12">     
+                                    <%= link_to "Delete", incident,  method: :delete, data: { confirm: 'Are you sure?' }, class:'color btn btn-primary btn-block m-x-1 m-y-1' %>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>                                  
+                <% end %>
+                </tbody>
+            </table>
+            <%= link_to "Add Incident", new_incident_path, class:'color btn btn-primary' %>        
+        </div>
+    </div>
+    <div class="col-xs-3">
+        <div class="card shadow card-block" >
+            <h6 class="text-xs-center">Concern Type</h6>
+            <table class="table fix">
+                <tr>
+                    <th class="th-fix">ID</th>
+                    <th class="th-fix">Type</th>
+                </tr>
+                <tbody class="incident-tab">
+                <% @incidents.each do |incident| %>
+                <tr class="modal-row" data-toggle="modal" data-target=".view-incidents-<%= incident.id %>">
+                    <td class="incident-detail"><%= incident.id %></td>
+                    <td class="incident-detail text-xs-center"><%= incident.name %></td>
+                </tr>
+                <!-- Incidents Modal -->
+                    <div class="modal view-incidents-<%= incident.id %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                        <div class="v-c modal-dialog modal-sm">
+                            <div class="container-fluid">
+                                <h5 class="text-xs-center p-l-2" style="color: white"><%= incident.name %></h5>
+                                <div class="col-xs-12">
+                                    <%= link_to "Edit", edit_incident_path(incident), class:'color btn btn-primary btn-block m-y-1 m-x-1' %>
+                                </div>
+                                <div class="col-xs-12">     
+                                    <%= link_to "Delete", incident,  method: :delete, data: { confirm: 'Are you sure?' }, class:'color btn btn-primary btn-block m-x-1 m-y-1' %>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>                                  
+                <% end %>
+                </tbody>
+            </table>
+            <%= link_to "Add Incident", new_incident_path, class:'color btn btn-primary' %>        
+        </div>
+    </div>
+</div>
+
+<!-- Old Version
+<div class="row v-c">
+    <div class="col-lg-12">    
+            <div class="reference-h card shadow card-block" >
+                    <ul class="text-xs-center nav nav-pills" role="tablist">
+                        <li class="nav-item m-t-1 m-l-1">
+                            <a class="color-dir nav-link active" data-toggle="tab" href="#access" role="tab">Access Level</a>
+                        </li>
+                        <li class="nav-item m-t-1 m-l-1">
+                            <a class="color-dir nav-link" data-toggle="tab" href="#department" role="tab">Departments</a>
+                        </li>
+                        <li class="nav-item m-t-1 m-l-1">
+                            <a class="color-dir nav-link" data-toggle="tab" href="#incidents" role="tab">Incidents</a>
+                        </li>
+                        <li class="nav-item m-t-1 m-l-1">
+                            <a class="color-dir nav-link" data-toggle="tab" href="#hours" role="tab">Restaurant Hours</a>
+                        </li>
+                        <li class="nav-item m-t-1 m-l-1">
+                            <a class="color-dir nav-link" data-toggle="tab" href="#test" role="tab">Test </a>
+                        </li>                          
+                    </ul>
+                <div class="container">
+                    <div class="tab-content m-t-2">
+                        <div class="tab-pane active" id="access" role="tabpanel">
+                            <table class="table fix">
+                                <thead>
+                                    <tr>
+                                        <th>Model Name</th>
+                                        <th>Record Id</th>
+                                        <th>Action</th>
+                                        <th>Completed By</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% @versions.each do |v| %>
+                                    <tr>
+                                        <td><%= v.item_type %></td>
+                                        <td><%= v.item_id %></td>
+                                        <td><%= v.event %></td>
+                                        <td><%= v.whodunnit %></td>
+                                    </tr>
+                                    <% end %>
+                                </tbody>
+                            
+                            </table>
+                            <%= will_paginate @versions, :page_links => false %>
+                        </div>
+                    
+                        <div class="tab-pane" id="department" role="tabpanel">
+                            <table class="table fix">
+                                <tr>
+                                    <th>Department ID</th>
+                                    <th>Department Name</th>
+                                </tr>
+                                <tbody class="department-tab">
+                                <% @departments.each do |department| %>
+                                <tr class="modal-row" data-toggle="modal" data-target=".view-details<%= department.id %>">
+                                    <td class="department-detail"><%= department.id %></td>
+                                    <td class="department-detail"><%= department.name %></td>
+                                </tr>
+<div class="modal view-details<%= department.id %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="v-c modal-dialog modal-sm">
+      <div class="container-fluid">
+        <h5 class="text-xs-center p-l-2" style="color: white"><%= department.name %></h5>
+        <div class="col-xs-12">
+          <%= link_to "Edit", edit_department_path(department), class:'color btn btn-primary btn-block m-y-1 m-x-1' %>
+        </div>
+        <div class="col-xs-12">     
+          <%= link_to "Delete", department,  method: :delete, data: { confirm: 'Are you sure?' }, class:'color btn btn-primary btn-block m-x-1 m-y-1' %>
+        </div>
+      </div>  
+  </div>
+</div>                                  
+                                <% end %>
+                                </tbody>
+                                </table>
+                            <%= link_to "Add Department", new_department_path, class:'color btn btn-primary m-b-2' %>                                
+                        </div>
+                        <div class="tab-pane" id="incidents" role="tabpanel">
+                            <table class="table fix">
+                                <tr>
+                                    <th>Incident ID</th>
+                                    <th>Incident Types</th>
+                                </tr>
+                                <tbody class="incident-tab">
+                                <% @incidents.each do |incident| %>
+                                <tr class="modal-row" data-toggle="modal" data-target=".view-details<%= incident.id %>">
+                                    <td class="incident-detail"><%= incident.id %></td>
+                                    <td class="incident-detail"><%= incident.name %></td>
+                                </tr>
+<div class="modal view-details<%= incident.id %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="v-c modal-dialog modal-sm">
+      <div class="container-fluid">
+        <h5 class="text-xs-center p-l-2" style="color: white"><%= incident.name %></h5>
+        <div class="col-xs-12">
+          <%= link_to "Edit", edit_incident_path(incident), class:'color btn btn-primary btn-block m-y-1 m-x-1' %>
+        </div>
+        <div class="col-xs-12">     
+          <%= link_to "Delete", incident,  method: :delete, data: { confirm: 'Are you sure?' }, class:'color btn btn-primary btn-block m-x-1 m-y-1' %>
+        </div>
+      </div>  
+  </div>
+</div>                                  
+                                <% end %>
+                                </tbody>
+                                </table>
+                            <%= link_to "Add Incident", new_incident_path, class:'color btn btn-primary m-b-2' %>                                 
+                        </div>
+                        <div class="tab-pane" id="hours" role="tabpanel">
+                            <table class="table fix">
+                                <tr>
+                                    <th>Restaurant ID</th>
+                                    <th>Restaurant Name</th>
+                                </tr>
+                                <% @hours.each do |hour| %>
+                                <tr>
+                                    <td><%= hour.id %>. <%= hour.restaurant_name %></td>
+                                </tr>
+                                <% end %>
+                                </table>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+-->

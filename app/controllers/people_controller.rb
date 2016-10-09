@@ -27,6 +27,7 @@ before_action :require_admin, only: [:new]
    
    def show
         @person = Person.find(params[:id])
+        @versions = @person.versions.first  
    end
    
    def new

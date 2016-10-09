@@ -28,6 +28,10 @@ Incident.create(id: 4, name:"Physical Altercation")
 Incident.create(id: 5, name:"TITO Theft")
 Incident.create(id: 6, name:"Property Theft")
 
+Contype.create(id: 1, name: "Internal (Physical)")
+Contype.create(id: 2, name: "Internal (Non-physical)")
+Contype.create(id: 3, name: "External (Physical)")
+Contype.create(id: 4, name: "External (Non-physical)")
 
 Listing.create(location: "Main Boarding", department_id: 1, extension: "7047", phone_number: "816-414-7047")
 Listing.create(location: "King Boarding", department_id: 1, extension: "7049", phone_number: "816-414-7049")

@@ -501,7 +501,7 @@ input.nmpd-display {
     position: absolute;
     bottom: -25px;
 
-    display: block;
+    display: none;
 
     width: 100%;
     padding: 0;
@@ -515,7 +515,7 @@ input.nmpd-display {
 {
     position: relative;
 
-    display: inline-block;
+    display: none;
 
     width: 20px;
     height: 20px;
@@ -529,7 +529,7 @@ input.nmpd-display {
     font-size: 0;
     line-height: 0;
 
-    display: block;
+    display: none;
 
     width: 20px;
     height: 20px;
@@ -938,7 +938,61 @@ p.text-tip, .text-tip {
     margin: 0;
 }
 
+.detail-h {
+    max-height: 100px;
+    overflow-y: auto;
+}
+.active-card-h {
+    min-height: 659px;
+}
+tbody.directory-tab {
+    overflow-y: auto;
+    min-height: 250px;
+    max-height: 250px;
+}
+.reference-h {
+    min-height: 500px;
+    max-height: 500px;
+}
+tbody.department-tab, tbody.incident-tab {
+    display: block;
+    overflow-y: auto;
+    max-height: 200px;
+    min-width: 220px;    
+}
+td.department-detail, td.incident-detail {
+    min-height: 49px;
+    min-width: 66px;
+}
+th.th-fix {
+    padding: .25rem;
+    font-weight: normal;
+    max-width: 66px;
+}
+.forecast-w {
+    min-width: 200px;
+}
+.forecast-w-2, .hours-w{
+    min-width: 650px;
+    min-height: 700px;
+}
+.forecast-con-fix {
+    padding-left: 0;
+    padding-right: 0;
+}
+.forecast-col-fix {
+    min-width: 590px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: .5rem;
+}
 
+.shadow {
+    box-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32);
+}
+.footer-shadow {
+    box-shadow: 0 -5px 5px rgba(0,0,0,.16),0 1px 20px rgba(0,0,0,.32);
+}
 ::-webkit-scrollbar {
     width: 1em;
 }

@@ -20,12 +20,6 @@ before_action :require_user
         @listing = Listing.all;
     end
     
-    def admin_references
-       @clearances = Clearance.all
-       @departments = Department.all
-       @incidents = Incident.all
-    end
-    
     def security
         @constructions = Construction.paginate(:page => params[:page], :per_page => 5)
         @events = Event.where("DATE(date) = ?", Date.today)

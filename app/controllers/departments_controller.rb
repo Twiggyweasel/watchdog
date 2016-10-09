@@ -13,7 +13,7 @@ class DepartmentsController < ApplicationController
     
     if @department.save
       flash[:success] = "Department has been created successfully!"
-      redirect_to departments_path
+      redirect_to reference_admin_path
     else
       render 'new'
     end
@@ -28,7 +28,7 @@ class DepartmentsController < ApplicationController
     
     if @department.update(department_params)
       flash[:success] = "Department has been updated successfully!"
-      redirect_to departments_path 
+      redirect_to reference_admin_path 
     else
       render 'edit'
     end
@@ -37,7 +37,7 @@ class DepartmentsController < ApplicationController
   def destroy
     @department = Department.find(params[:id])
     @department.destroy
-    redirect_to departments_path
+    redirect_to reference_admin_path
   end
   
   private

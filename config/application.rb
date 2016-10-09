@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module Watchdog
   class Application < Rails::Application
+    config.time_zone = 'Central Time (US & Canada)'
     config.autoload_paths += %W(#{config.root}/lib)
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

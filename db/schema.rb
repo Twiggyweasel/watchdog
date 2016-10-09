@@ -11,13 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161001160720) do
+ActiveRecord::Schema.define(version: 20161009133352) do
 
   create_table "clearances", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "concerns", force: :cascade do |t|
+    t.string   "concern_name"
+    t.text     "concern_description"
+    t.date     "date_of_start"
+    t.boolean  "archived"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "contypes_id"
+  end
+
+  add_index "concerns", ["contypes_id"], name: "index_concerns_on_contypes_id"
 
   create_table "constructions", force: :cascade do |t|
     t.string   "location"
@@ -28,6 +40,12 @@ ActiveRecord::Schema.define(version: 20161001160720) do
     t.boolean  "archived",             default: false
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
+  end
+
+  create_table "contypes", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "departments", force: :cascade do |t|
@@ -43,6 +61,17 @@ ActiveRecord::Schema.define(version: 20161001160720) do
     t.date     "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "hours", force: :cascade do |t|
+    t.string "restaurant_name"
+    t.string "hour_set_one"
+    t.string "hour_set_two"
+    t.string "hour_set_three"
+    t.string "hour_set_four"
+    t.string "hour_set_five"
+    t.text   "restaurant_details"
+    t.text   "restaurant_promotions"
   end
 
   create_table "incidents", force: :cascade do |t|

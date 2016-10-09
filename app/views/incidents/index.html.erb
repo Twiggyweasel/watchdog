@@ -1,0 +1,21 @@
+<div class="row v-c">
+  <div class="col-xs-12">
+    <div class="card card-block">
+      <div class="container-fluid">
+        <table class="table">
+          <tr>
+            <th>Department ID</th>
+            <th>Department Name</th>
+          </tr>
+          <% @departments.each do |department| %>
+          <tr>
+            <td><%= department.id %></td>
+            <td><%= department.name %></td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+

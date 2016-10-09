@@ -1,0 +1,14 @@
+<!-- Needs Formating -->
+<%= form_for @hour do |f| %>
+    <%= f.text_field :restaurant_name, class:"form-control", placeholder: "Business Name" %>
+    <%= f.text_field :hour_set_one, class:"form-control", placeholder: "First Hours Set" %>
+    <%= f.text_field :hour_set_two, class:"form-control", placeholder: "Second Hours Set" %>
+    <%= f.text_field :hour_set_three, class:"form-control", placeholder: "Third Hours Set" %>
+    <%= f.text_field :hour_set_four, class:"form-control", placeholder: "Fourth Hours Set" %>
+    <%= f.text_field :hour_set_five, class:"form-control", placeholder: "Fifth Hours Set" %>
+    <%= f.text_area :restaurant_details, class:"form-control", placeholder: "Business Details" %>
+    <%= f.text_area :restaurant_promotions, class:"form-control", placeholder: "Current Promotions" %>
+    <br>
+    <%= link_to "Cancel", reference_admin_path, class:"m-t-2 color btn btn-success btn-block" %>
+    <%= f.submit(@hour.new_record? ? "Create Incident Type" : "Edit Incident Type", class:'btn btn-success btn-block') %>
+<% end %>

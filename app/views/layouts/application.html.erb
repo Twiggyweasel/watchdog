@@ -1,89 +1,114 @@
 <!-- Backbone of Application    --*>
 <*-- Compiled and Error Checked --*>
-<*-- On 9/26/2016               --->
+<*-- On 10/02/2016               --->
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Watchdog</title>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= csrf_meta_tags %>
-    <%= favicon_link_tag 'favicon.ico' %>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-  </head>
-  <body onload="startTime()">
-    <div class="height-keep navbar navbar-static-top navbar-dark bg-inverse">
-      <div class="container-fluid">
-        <div class="w navbar-exit">
-        <% if logged_in? %>
-          <% if current_user.clearance_id == 1 %>
-            <%= link_to "Admin", admin_path, class:"color btn btn-primary" %> |
-          <% else %>
-          <% end %>
-          <%= link_to "Logout", logout_path, class:"color btn btn-primary" %>
-          <% else %>
-          <% end %>
+    <head>
+        <title>Watchdog</title>
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+        <%= csrf_meta_tags %>
+        <%= favicon_link_tag 'favicon.ico' %>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    </head>
+    <body onload="startTime()">
+        <div class="height-keep navbar navbar-static-top navbar-dark bg-inverse shadow">
+            <div class="container-fluid">
+                <div class="w navbar-exit">
+                    <% if logged_in? %>
+                        <% if current_user.clearance_id == 1 %>
+                        <%= link_to "Admin", admin_home_path, class:"color btn btn-primary" %> |
+                        <% else %>
+                        <% end %>
+                    <%= link_to "Logout", logout_path, class:"color btn btn-primary" %>
+                    <% else %>
+                    <% end %>
+                </div>
+                <div class="w navbar-home">
+                    <% if logged_in? == true %>
+                        <% if current_page?(index_path) %>
+                            <%= link_to "Watchdog", index_path, class:"navbar-brand" %>
+                        <% else %>
+                            <%= link_to "Home", index_path, class:"color btn btn-primary" %>
+                            <!-- Back Button Loop -->
+                            <% if current_page?(active_path) || current_page?(security_path) || current_page?(property_path) || current_page?(admin_home_path) %>
+                                | <%= link_to "Back", index_path, class:"color btn btn-primary" %>
+                            <% else %>
+                            	<% if current_page?(venue_path) || current_page?(maps_path) || current_page?(directory_path) %>
+                            		| <%= link_to "Back", property_path, class:"color btn btn-primary" %>
+	                            <% else %>
+                            	    <% if current_page?(people_path) || current_page?(reference_admin_path) || current_page?(security_admin_path) || current_page?(logs_admin_path) || current_page?(property_admin_path) || current_page?(users_path) %>
+                            	        | <%= link_to "Back", admin_home_path, class:"color btn btn-primary" %>
+                                    <% else %>
+                                        <% if current_page?(archive_path) %>
+                                            | <%= link_to "Back", people_path, class:"color btn btn-primary" %>
+                                        <% else %>
+                                            <% if current_page?(events_path) || current_page?(listings_path) %>
+                                                | <%= link_to "Back", property_admin_path, class:"color btn btn-primary" %>
+                                            <% else %>
+                                                <% if current_page?(:action => "new")  || current_page?(:action => "edit") %>
+                                                <% else %>
+                                                    <% if current_page?(person_path) %>
+                                                        | <%= link_to "Back", active_path, class:"color btn btn-primary" %>
+                                                    <% else %>
+                                                    <% end %>
+                                                <% end %>
+                                            <% end %>
+                                        <% end %>
+                                    <% end %>
+                            	<% end %>
+                            <% end %>	
+                        <% end %>            
+                    <% else %>
+                    <% end %>
+                </div>
+            </div>
         </div>
-        <div class="w navbar-home">
-        <% if logged_in? == true %>
-          <% if current_page?(index_path) %>
-            <%= link_to "Watchdog", index_path, class:"navbar-brand" %>
-          <% else %>
-            <%= link_to "Home", index_path, class:"color btn btn-primary" %> |
-            <%= link_to "Back", :back, class:"color btn btn-primary" %>
-          <% end %>            
+<!--    <input type="button" value="click to toggle fullscreen" onclick="toggleFullScreen()"> -->
+        <% if current_page?(active_path) || current_page?(reference_admin_path) %>
+        <div class="container">
+            <%= render 'layouts/messages' %>
+            <%= yield %>
+        </div>
         <% else %>
-        <% end %>
+        <div class="container">
+            <%= render 'layouts/messages' %>
+            <div class="row">
+                <%= yield %>
+            </div>
         </div>
-      </div>
-    </div>
-    <% if current_page?(active_path) %>
-    <div class="container">
-      <%= render 'layouts/messages' %>
-        <%= yield %>
-    </div>
-    <% else %>
-    <div class="container">
-      <%= render 'layouts/messages' %>
-      <div class="row">
-        <%= yield %>
-      </div>
-    </div>
-    <% end %>
-    
-    <div class="height-keep navbar navbar-fixed-bottom navbar-dark bg-inverse">
-        <% if logged_in? == true %>
-        <ul class="pull-xs-right footer-clock nav navbar-nav" id="clock"></ul>
-        <ul class="pull-xs-right footer-buffer nav navbar-nav"><li class="w nav-item">|</li></ul>
-        <ul class="pull-xs-right footer-hour nav navbar-nav"><li class="modal-row-hour w nav-item" data-toggle="modal" data-target=".hoursModal">Hours of Operation</li></ul>        
-        <ul class="nav navbar-nav pull-xs-left" id="weather"></ul>      
-      <% else %>
-      <% end %>
-  </div>
-<div class="modal forecastModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-<div class="v-c modal-dialog modal-lg">
-<div class="container-fluid">
-<div class="col-xs-12">
-<div class="card card-block card-shadow text-xs-center">
-<table>
-<tr>
-<td id="forecast">
-</td>
-</tr>
-</table>
-</div>  
-</div>
-</div>
-</div>
-</div>
-<div class="modal hoursModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-<div class="v-c modal-dialog modal-lg">
-<div class="container-fluid">
-<h5 class="text-xs-center p-l-2" style="color: white">Test Hours, Please Ignore</h5>
-
-</div>
-</div>
-</div>
-  </body>
+        <% end %>
+        <div class="height-keep navbar navbar-fixed-bottom navbar-dark bg-inverse footer-shadow">
+            <% if logged_in? == true %>
+                <ul class="pull-xs-right footer-clock nav navbar-nav" id="clock"></ul>
+                <ul class="pull-xs-right footer-buffer nav navbar-nav"><li class="w nav-item">|</li></ul>
+                <ul class="pull-xs-right footer-hour nav navbar-nav"><li class="modal-row-hour w nav-item" data-toggle="modal" data-target=".hoursModal">Streetscape</li></ul>        
+                <ul class="nav navbar-nav pull-xs-left" id="weather"></ul>      
+            <% else %>
+            <% end %>
+        </div>
+        <div class="modal forecastModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="v-c modal-dialog modal-lg">
+                <div class="container-fluid">
+                    <div class="col-xs-12">
+                        <div class="forecast-w-2 card card-block shadow text-xs-center">
+                            <span id="forecast"></span>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal hoursModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="v-c modal-dialog modal-lg">
+                <div class="container-fluid">
+                    <div class="col-xs-12">
+                        <div class="hours-w card card-block shadow text-xs-center">                    
+                            <h5>Test Hours, Please Ignore</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
 

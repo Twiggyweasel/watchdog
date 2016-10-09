@@ -12,8 +12,8 @@ class IncidentsController < ApplicationController
     @incident = Incident.new(incident_params)
     
     if @incident.save
-      flash[:success] = "Clearance has been created successfully!"
-      redirect_to incidents_path
+      flash[:success] = "Incident Type has been created successfully!"
+      redirect_to reference_admin_path
     else
       render 'new'
     end
@@ -28,7 +28,7 @@ class IncidentsController < ApplicationController
     
     if @incident.update(clearance_params)
       flash[:success] = "Incident has been updated successfully!"
-      redirect_to incidents_path 
+      redirect_to reference_admin_path 
     else
       render 'edit'
     end
@@ -37,7 +37,7 @@ class IncidentsController < ApplicationController
   def destroy
       @incident = Incident.find(params[:id])
       @incident.destroy
-      redirect_to incidents_path
+      redirect_to reference_admin_path
   end
   
   private

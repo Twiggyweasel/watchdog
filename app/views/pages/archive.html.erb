@@ -2,7 +2,7 @@
 <div class="row v-c">
         <div class="col-xs-3"></div>
             <div class="col-xs-6">
-                <div class="m-y-2 card card-block text-xs-center" style="box-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32);">
+                <div class="m-y-2 card card-block shadow text-xs-center">
                     <h5>No Archived Records</h5>
                     <br />
                     <%= link_to "Active Records", active_path, class:'color btn btn-primary m-b-2' %>
@@ -15,7 +15,7 @@
   <section class="regular slider">
             <% @people.each do |person| %> 
                 <div class="col-xs-3 m-t-2">
-                    <div class="height-fix card card-block text-xs-center" style="box-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32);">
+                    <div class="height-fix card card-block shadow text-xs-center">
                     <% if person.image.blank? %>
                     <%= image_tag "no-img.png", class:"img-fluid" %> 
                     <% else %>
