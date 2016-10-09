@@ -6,7 +6,7 @@ class CreateConcern < ActiveRecord::Migration
       t.date :date_of_start
       t.boolean :archived
       t.timestamps null: false
-      t.references :contypes, index: true, foreign_key: true
+      t.references :contype, index: true, foreign_key: true
     end
   end
 end
