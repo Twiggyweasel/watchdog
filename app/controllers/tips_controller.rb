@@ -13,7 +13,7 @@ class TipsController < ApplicationController
     
     if @tip.save
       flash[:success] = "Tip has been created successfully!"
-      redirect_to tips_path
+      redirect_to security_admin_path
     else
       render 'new'
     end
@@ -28,7 +28,7 @@ class TipsController < ApplicationController
     
     if @tip.update(tip_params)
       flash[:success] = "Tip has been updated successfully!"
-      redirect_to tips_path 
+      redirect_to security_admin_path 
     else
       render 'edit'
     end
@@ -37,7 +37,7 @@ class TipsController < ApplicationController
   def destroy
       @tip = Tip.find(params[:id])
       @tip.destroy
-      redirect_to tips_path
+      redirect_to security_admin_path
   end
   
   private

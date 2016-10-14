@@ -42,7 +42,7 @@ class HoursController < ApplicationController
   
   private
     def hour_params
-      params.require(:hour).permit(:restaurant_name, :hour_set_one, :hour_set_two, :hour_set_three, :hour_set_four, :hour_set_five, :restaurant_details, :restaurant_promotions)
+      params.require(:hour).permit(:restaurant_name, :monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday, :secondary, :restaurant_details, :restaurant_promotions)
     end
 
 end

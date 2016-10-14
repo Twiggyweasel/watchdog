@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161009133352) do
+ActiveRecord::Schema.define(version: 20161013152454) do
 
   create_table "clearances", force: :cascade do |t|
     t.string   "name"
@@ -26,10 +26,10 @@ ActiveRecord::Schema.define(version: 20161009133352) do
     t.boolean  "archived"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
-    t.integer  "contypes_id"
+    t.integer  "contype_id"
   end
 
-  add_index "concerns", ["contypes_id"], name: "index_concerns_on_contypes_id"
+  add_index "concerns", ["contype_id"], name: "index_concerns_on_contype_id"
 
   create_table "constructions", force: :cascade do |t|
     t.string   "location"
@@ -54,22 +54,34 @@ ActiveRecord::Schema.define(version: 20161009133352) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
-    t.string   "location"
-    t.string   "event_type"
-    t.string   "time"
     t.text     "details"
     t.date     "date"
+    t.time     "time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "evetype_id"
+    t.integer  "venue_id"
+  end
+
+  add_index "events", ["evetype_id"], name: "index_events_on_evetype_id"
+  add_index "events", ["venue_id"], name: "index_events_on_venue_id"
+
+  create_table "evetypes", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "hours", force: :cascade do |t|
     t.string "restaurant_name"
-    t.string "hour_set_one"
-    t.string "hour_set_two"
-    t.string "hour_set_three"
-    t.string "hour_set_four"
-    t.string "hour_set_five"
+    t.string "monday"
+    t.string "tuesday"
+    t.string "wednesday"
+    t.string "thursday"
+    t.string "friday"
+    t.string "saturday"
+    t.string "sunday"
+    t.string "secondary"
     t.text   "restaurant_details"
     t.text   "restaurant_promotions"
   end
@@ -111,6 +123,7 @@ ActiveRecord::Schema.define(version: 20161009133352) do
 
   create_table "tips", force: :cascade do |t|
     t.text     "totd"
+    t.boolean  "seeded",     default: false
     t.boolean  "archived",   default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
@@ -129,6 +142,12 @@ ActiveRecord::Schema.define(version: 20161009133352) do
 
   add_index "users", ["clearance_id"], name: "index_users_on_clearance_id"
   add_index "users", ["department_id"], name: "index_users_on_department_id"
+
+  create_table "venues", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "versions", force: :cascade do |t|
     t.string   "item_type",                     null: false

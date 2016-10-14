@@ -3,13 +3,11 @@
 
             <div class="col-lg-12">
                 <div class="card card-block shadow shadow security-tabs-w security-tabs-h-l">
-                    <h6 class="text-xs-center card-title">Security Tip of the Week</h6>
+                    <h6 class="text-xs-center card-title">Security Tip</h6>
                     <div class="col-xs-12 totw-tab-h">
-                        <% @tips.each do |tip| %>
                         <div class="col-xs-11 text-xs-center text-tip" style="margin: 0 auto;">
-                            <p class="text-tip" style=" padding-top: 1.5rem;">"<%= tip.totd %>"</p>
+                            <p class="text-tip">"<%= @totd.totd %>"</p>
                         </div>
-                        <% end %>
                     </div>
                 </div>
             </div>
@@ -27,13 +25,13 @@
                                 <% @events.each do |event| %>
                                 <tr class="modal-row" data-toggle="modal" data-target=".view-details<%= event.id %>">
                                     <td class="out-pad-row"><%= event.name %></td>
-                                    <td class="space-pad-row"><%= event.location %></td>
-                                    <td class="space-pad-row"><%= event.time %></td>
+                                    <td class="space-pad-row"><%= event.venue.name %></td>
+                                    <td class="space-pad-row"><%= event.time.strftime("%H:%M")  %></td>
                                 </tr>
                                 <div class="modal view-details<%= event.id %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                                     <div class="v-c modal-dialog modal-lg">
                                         <div class="container-fluid">
-                                            <h5 class="text-xs-center p-l-2" style="color: white"><%= event.name %> -- <%= event.location %></h5>
+                                            <h5 class="text-xs-center p-l-2" style="color: white"><%= event.name %> -- <%= event.venue.name %></h5>
                                         </div>  
                                     </div>
                                 </div>   
@@ -54,12 +52,18 @@
                 <div class="card card-block shadow shadow security-tabs-w security-tabs-h-r">
                     <h6 class="text-xs-center card-title">Construction</h6>
                     <div class="col-xs-12 construction-tab-h">
-                            <table class="table fix">
+                        <table class="table fix">
                                 <tr>
                                     <th>Location</th>
                                     <th>Type</th>
                                     <th>Est. Completion</th>
                                 </tr>
+                            <% if @constructions.count == 0 %>
+                            <tr>
+                                <td class="nocon"><span>No Construction Reported</span></td>
+                            </tr>     
+                            <% else %>                            
+
                                 <% @constructions.each do |construction| %>
                                 <tr>
                                     <td><%= construction.location %></td>
@@ -67,8 +71,9 @@
                                     <td><%= construction.date_of_completion %></td>
                                 </tr>
                                 <% end %>
-                                </table>
-                                <%= will_paginate @constructions, :page_links => false %>                         
+                            <% end %>
+                        </table>
+                        <%= will_paginate @constructions, :page_links => false %>                             
                     </div>                    
                 </div>
                 <div class="card card-block shadow shadow security-tabs-w security-tabs-h-r">

@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
-    
+    belongs_to :venue
+    belongs_to :evetype
     self.per_page = 5
     
     scope :sorted_by, lambda { |sort_option|

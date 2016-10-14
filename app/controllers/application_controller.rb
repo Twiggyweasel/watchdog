@@ -4,11 +4,21 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user, :logged_in?,:require_admin
   before_action :set_paper_trail_whodunnit
+  before_filter:time_cache
+  before_filter :set_timezone
+
+  def set_timezone
+    Time.zone = 'Central Time (US & Canada)'
+  end
 
   def current_user
     @current_user ||= User.find_by(employee_num: session[:user]) if session[:user]
   end
   
+  def time_cache
+    @firstset = Hour.limit(7)
+    @secondset = Hour.offset(7)
+  end
   
   
   

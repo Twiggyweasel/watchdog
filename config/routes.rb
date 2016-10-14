@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :tips
   resources :hours
   resources :incidents
+  resources :contypes
 
   # Boarding Routes
     #Main Page

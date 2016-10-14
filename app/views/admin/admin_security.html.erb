@@ -1,10 +1,27 @@
 <div class="row v-c">
-<div class="col-xs-3"></div>
-    <div class="col-xs-6">
-        <div class="m-y-2 card card-block shadow text-xs-center">
-            <h5>404 - Page Not Found</h5>
-            <br />
-            <%= link_to "Back", :back, class:'color btn btn-primary m-b-2' %>
+    <div class="center m-y-2 col-xs-12">
+        <div class="card card-block" style="box-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32);">
+           <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tip of The Week</th>
+                        <th>Edit | Delete</th>                        
+                    </tr>
+                </thead>
+                <tbody>
+                <% @tips.each do |tip| %>         
+                    <tr>
+                        <td><%= tip.id %></td>
+                        <td><%= tip.totd %></td>
+                        <td><%= link_to(edit_tip_path(tip), class:'btn btn-primary') do %><i class="fa fa-pencil"></i><% end %> | <%= link_to(tip, method: :delete, data:{confirm: 'Are you sure? (This can not be undone)'}, class:'btn btn-danger') do %><i class="fa fa-trash"></i><% end %></td>                        
+                    </tr>
+                    <% end %>
+
+                </tbody>
+            </table>
+            <%= link_to "Add Listing", new_tip_path, class:"color btn btn-primary" %>            
         </div>
     </div>
 </div>    
+<span class="octicon octicon-alert"></span>

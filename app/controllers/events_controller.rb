@@ -64,6 +64,6 @@ before_action :require_admin, only: [:new]
    
    private 
     def event_params
-      params.require(:event).permit(:id, :name, :location, :event_type, :time, :details, :date)
+      params.require(:event).permit(:id, :name, :venue_id, :evetype_id, :time, :details, :date)
     end
 end

@@ -1,0 +1,17 @@
+<!-- Needs Formating -->
+<%= form_for @tip do |f| %>
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12">
+    <%= f.label :totd, 'Tip of the Week' %> 
+    <%= f.text_area :totd, class:"form-control", placeholder: "Security Tip" %>
+</div>
+</div>
+<div class="row">
+<div class="col-xs-12">
+    <%= link_to "Cancel", security_admin_path, class:"m-t-2 color btn btn-success btn-block" %>
+    <%= f.submit(@tip.new_record? ? "Create Incident Type" : "Edit Incident Type", class:'btn btn-success btn-block') %>
+</div>
+</div>
+</div>
+<% end %>

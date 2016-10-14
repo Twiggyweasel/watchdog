@@ -964,6 +964,10 @@ td.department-detail, td.incident-detail {
     min-height: 49px;
     min-width: 66px;
 }
+td.nocon {
+    display: block;
+    min-width: 400px;
+}
 th.th-fix {
     padding: .25rem;
     font-weight: normal;
@@ -1004,4 +1008,15 @@ th.th-fix {
 ::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   outline: 1px solid slategrey;
+}
+
+.copyright {
+  padding: 8px 0;
+  margin: 0;
+  color: #a0a0a0;
+}
+.copyright .material-icons {
+  font-size: 18px;
+  position: relative;
+  top: 3px;
 }

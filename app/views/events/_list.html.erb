@@ -15,8 +15,8 @@
     <% events.each do |event| %>
       <tr class="modal-row" data-toggle="modal" data-target=".edit-destroy-<%= event.id %>">
          <td><%= event.name %></td>
-         <td><%= event.location %></td>
-         <td><%= event.event_type %></td>
+         <td><%= event.venue.name %></td>
+         <td><%= event.evetype.name %></td>
          <td><%= event.date %></td>
       </tr>
 <div class="modal edit-destroy-<%= event.id %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">

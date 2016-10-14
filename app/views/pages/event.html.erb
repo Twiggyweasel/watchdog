@@ -1,10 +1,63 @@
-<div class="row v-c">
-<div class="col-xs-3"></div>
-    <div class="col-xs-6">
-        <div class="m-y-2 card card-block shadow text-xs-center">
-            <h5>404 - Page Not Found</h5>
-            <br />
-            <%= link_to "Back", :back, class:'color btn btn-primary m-b-2' %>
-        </div>
-    </div>
-</div>    
+<% if @events.count == 0 %> 
+    <div class="row v-c"> 
+    <div class="col-xs-3"></div> 
+        <div class="col-xs-6"> 
+            <div class="m-y-2 card card-block shadow text-xs-center"> 
+                <h5>No Scheduled Events</h5> 
+                <br /> 
+                <%= link_to "Back", index_path, class:'color btn btn-primary m-b-2' %> 
+            </div> 
+        </div> 
+    </div>            
+<% else %> 
+    <div class="m-t-3 container-fluid">
+        <section class="regular slider"> 
+        <% @events.each do |e| %> 
+            <div class="col-xs-3 m-t-2"> 
+                <div class="active-card-h card card-block shadow text-xs-center"> 
+                    <% if e.venue_id == 1 %> 
+                        <%= image_tag "depot9test.png", class:"img-fluid" %> 
+                    <% else %> 
+                        <% if e.venue_id == 2 %>
+                            <%= image_tag "starpav.png", class:"img-fluid" %>
+                        <% else %>
+                            <%= image_tag "no-img.png", class:"img-fluid" %> 
+                        <% end %>
+                    <% end %>                 
+                    <h5 class="m-t-2">Scheduled Event</h5> 
+                    <p id="name"><%= e.name %></p> 
+                    <p id="vitals"><%= e.date %> | <%= e.time.strftime("%H:%M") %></p> 
+                    <h5>Event Details</h5> 
+                    <p id="reason"><%= e.venue.name %></p> 
+                    <p id="reason"><%= e.evetype.name %></p>
+                    <p id="reason"><%= e.details %></p>
+                </div> 
+            </div> 
+        <% end %>      
+        </section> 
+    </div>         
+<% end %> 
+
+<!-- Calls Slick -->    
+<script type="text/javascript"> 
+    $(document).on('ready', function() { 
+      $(".regular").slick({ 
+        dots: true, 
+        infinite: true, 
+        slidesToShow: 3, 
+        slidesToScroll: 3 
+      }); 
+      $(".center").slick({ 
+        dots: true, 
+        infinite: true, 
+        centerMode: true, 
+        slidesToShow: 3, 
+        slidesToScroll: 3 
+      }); 
+      $(".variable").slick({ 
+        dots: true, 
+        infinite: true, 
+        variableWidth: true 
+      }); 
+    }); 
+</script>

@@ -248,21 +248,21 @@
                     <th class="th-fix">Type</th>
                 </tr>
                 <tbody class="incident-tab">
-                <% @incidents.each do |incident| %>
-                <tr class="modal-row" data-toggle="modal" data-target=".view-incidents-<%= incident.id %>">
-                    <td class="incident-detail"><%= incident.id %></td>
-                    <td class="incident-detail text-xs-center"><%= incident.name %></td>
+                <% @contypes.each do |con| %>
+                <tr class="modal-row" data-toggle="modal" data-target=".view-contypes-<%= con.id %>">
+                    <td class="incident-detail"><%= con.id %></td>
+                    <td class="incident-detail text-xs-center"><%= con.name %></td>
                 </tr>
                 <!-- Incidents Modal -->
-                    <div class="modal view-incidents-<%= incident.id %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                    <div class="modal view-contypes-<%= con.id %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                         <div class="v-c modal-dialog modal-sm">
                             <div class="container-fluid">
-                                <h5 class="text-xs-center p-l-2" style="color: white"><%= incident.name %></h5>
+                                <h5 class="text-xs-center p-l-2" style="color: white"><%= con.name %></h5>
                                 <div class="col-xs-12">
-                                    <%= link_to "Edit", edit_incident_path(incident), class:'color btn btn-primary btn-block m-y-1 m-x-1' %>
+                                    <%= link_to "Edit", edit_contype_path(con), class:'color btn btn-primary btn-block m-y-1 m-x-1' %>
                                 </div>
                                 <div class="col-xs-12">     
-                                    <%= link_to "Delete", incident,  method: :delete, data: { confirm: 'Are you sure?' }, class:'color btn btn-primary btn-block m-x-1 m-y-1' %>
+                                    <%= link_to "Delete", con,  method: :delete, data: { confirm: 'Are you sure?' }, class:'color btn btn-primary btn-block m-x-1 m-y-1' %>
                                 </div>
                             </div>  
                         </div>
@@ -270,7 +270,7 @@
                 <% end %>
                 </tbody>
             </table>
-            <%= link_to "Add Incident", new_incident_path, class:'color btn btn-primary' %>        
+            <%= link_to "Add Concern", new_contype_path, class:'color btn btn-primary' %>        
         </div>
     </div>
 </div>
