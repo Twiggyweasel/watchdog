@@ -1,20 +1,14 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
-
- */
+*    Compiled and Error Checked
+*                 On
+*              10/27/2016
+*             By Chris Wise
+* Wise Solutions Digital Content Management, LLC
+*/
 
 @import "bootstrap";
 
+// Main Page Style
 html {
     height: 100%;
 }
@@ -22,14 +16,6 @@ body {
     height: 100%;    
     background: radial-gradient(circle, #cc0000, #840400); 
     background: -moz-radial-gradient(circle, #CC0000, #840400);
-    
-}
-.active-page {
-    background: white;
-    height: 90vh;
-    padding-left: 1rem;
-    width: 20%;
-}
 .footer {
     position: absolute;
     bottom: 0;
@@ -37,18 +23,32 @@ body {
     height: 60px;
     background-color: #f5f5f5;
 }
+@media (min-width: 544px) {
+.navbar {
+    border-radius: 0;
+}
+}
+// Background color for dropdown menu pages    
+}
+.droppages {
+    height: 100%;     
+    background: white;
+}
+// Maps Default Image Thumbnail
 .size {
     width: 200px;
     height: 150px;
     margin: auto;
 }
+// Navigation Pill Default Size
 .btn-size {
     width: 200px;
 }
+// White Text
 .w {
     color: white;
 }
-
+// Centers Horizontally
 .center {
     width: 75%;
     margin: 0 auto;
@@ -628,6 +628,9 @@ a.pagination {
 
 
 /* Testy Test */
+tr.event-w {
+    min-width: 483px;
+}
 
 .modal-row:hover, .modal-row:active, .modal-row:focus {
     background-color: #cc0000;
@@ -894,27 +897,30 @@ a.pagination {
 .venue-tab-h,  {
     min-height: 175px;
     max-height: 175px;
+    border-top: 1px solid #CC0000;     
 }
 .policy-tab-h {
     min-height: 125px;
     max-height: 125px; 
+    border-top: 1px solid #CC0000;    
 }
 
 .construction-tab-h {
     min-height: 200px;
+    border-top: 1px solid #CC0000;   
 }
 .concerns-tab-h {
     min-height: 200px;
-    border-top: 1px solid #eceeef;    
+    border-top: 1px solid #CC0000;    
 }
 .totw-tab-h {
     min-height: 75px;
-    border-top: 1px solid #eceeef;
+    border-top: 1px solid #CC0000;
 }
 .scroll-event {
     display: block;
     max-height: 101px;
-    min-width: 453px;
+    min-width: 483px;
     overflow-y: auto;
 }
 td.out-pad-row, td.space-pad-row {
@@ -980,6 +986,10 @@ th.th-fix {
     min-width: 650px;
     min-height: 700px;
 }
+.hours-w {
+    min-width: 850px;
+    min-height: 700px;
+}
 .forecast-con-fix {
     padding-left: 0;
     padding-right: 0;
@@ -1019,4 +1029,30 @@ th.th-fix {
   font-size: 18px;
   position: relative;
   top: 3px;
+}
+
+.m-helper {
+    margin-top: 15px;
+}
+
+.btn-primary:active:focus, .open > .btn-primary.dropdown-toggle:focus, .open > .btn-primary.dropdown-toggle:hover {
+    color: #fff;
+    background-color: #840400;
+    border-color: #840400;    
+}
+
+.dropdown-toggle::after {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 0.3em;
+    content: "";
+    vertical-align: middle;
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-left: 0.3em solid transparent;
+}
+
+.card-border {
+    border-top: 1px solid #eceeef
 }

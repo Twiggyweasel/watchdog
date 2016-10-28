@@ -15,34 +15,41 @@
                 <div class="card card-block shadow shadow security-tabs-w security-tabs-h-l-2">
                 <h6 class="text-xs-center card-title">Active Venues</h6>
                     <div class="col-xs-12 venue-tab-h">
-                            <table class="table fix">
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Location</th>
-                                    <th>Time</th>
-                                </tr>
-                                <tbody class="scroll-event" style="border-bottom: 1px solid #eceeef;">
-                                <% @events.each do |event| %>
-                                <tr class="modal-row" data-toggle="modal" data-target=".view-details<%= event.id %>">
-                                    <td class="out-pad-row"><%= event.name %></td>
-                                    <td class="space-pad-row"><%= event.venue.name %></td>
-                                    <td class="space-pad-row"><%= event.time.strftime("%H:%M")  %></td>
-                                </tr>
-                                <div class="modal view-details<%= event.id %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                    <div class="v-c modal-dialog modal-lg">
-                                        <div class="container-fluid">
-                                            <h5 class="text-xs-center p-l-2" style="color: white"><%= event.name %> -- <%= event.venue.name %></h5>
-                                        </div>  
-                                    </div>
-                                </div>   
-
-                                <% end %>
-                                </tbody>
-                            </table>
+                        <table class="table fix">
+                            <tr>
+                                <th>Name</th>
+                                <th>Location</th>
+                                <th>Time</th>
+                            </tr>
+                            <tbody class="scroll-event" style="border-bottom: 1px solid #eceeef;">
+                            <% @events.each do |event| %>
+                            <tr class="event-w modal-row" data-toggle="modal" data-target=".view-details<%= event.id %>">
+                                <td class="out-pad-row"><%= event.name %></td>
+                                <td class="space-pad-row"><%= event.venue.name %></td>
+                                <td class="space-pad-row"><%= event.time.strftime("%H:%M")  %></td>
+                            </tr>
+                            <div class="modal view-details<%= event.id %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                <div class="v-c modal-dialog modal-lg">
+                                    <div class="container-fluid">
+                                        <h5 class="text-xs-center p-l-2" style="color: white"><%= event.name %> -- <%= event.venue.name %></h5>
+                                    </div>  
+                                </div>
+                            </div>   
+                            <% end %>
+                            </tbody>
+                        </table>
                     </div>
-                <h6 class="text-xs-center card-title">Policy Updates</h6>
+                <h6 class="text-xs-center card-title card-border">Policy Updates</h6>
                     <div class="col-xs-12 policy-tab-h">
-                        
+                        <table class="table fix">
+                                <tr style="border-bottom: 1px solid #eceeef;">
+                                    <th>Policy</th>
+                                    <th>Updated On</th>
+                                </tr>    
+                                <tr>
+                                    <td class="nocon"><span>No Policy Updates</span></td>                                    
+                                </tr>                            
+                        </table>
                     </div>
                 </div>
             </div>
@@ -53,7 +60,7 @@
                     <h6 class="text-xs-center card-title">Construction</h6>
                     <div class="col-xs-12 construction-tab-h">
                         <table class="table fix">
-                                <tr>
+                                <tr style="border-bottom: 1px solid #eceeef;">
                                     <th>Location</th>
                                     <th>Type</th>
                                     <th>Est. Completion</th>
@@ -79,92 +86,18 @@
                 <div class="card card-block shadow shadow security-tabs-w security-tabs-h-r">
                     <h6 class="text-xs-center card-title">Security Concerns</h6>
                     <div class="col-xs-12 concerns-tab-h">
-                        
+                        <table class="table fix">
+                                <tr style="border-bottom: 1px solid #eceeef;">
+                                    <th>Concern </th>
+                                    <th>Concern Type</th>
+                                </tr>     
+                                <tr>
+                                    <td class="nocon"><span>No Current Security Concerns on Property</span></td>                                    
+                                </tr>
+                        </table>
                     </div>                     
                 </div>
         </div>
     </div>
-</div>
-<!-- Testy Test
-
-                <ul class="nav nav-pills" role="tablist" style="padding-left: 1rem;">
-  <li class="nav-item">
-    <a class="nav-link active" data-toggle="tab" href="#appearance" role="tab">Appearance</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#offense" role="tab">Offense</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#sighted" role="tab">If Sighted</a>
-  </li>
-</ul>
-
-
-<!-- Tab panes 
-<div class="tab-content m-t-2">
-
-  <div class="tab-pane active" id="appearance" role="tabpanel">
-    <div class="container">
-    <div class="col-xs-6 m-y-1">
-        <span>
-
-        </span>
     </div>
-    <div class="col-xs-6 m-y-1">
-        <span>
-
-        </span>
-    </div>
-    <div class="col-xs-6 m-y-1">
-        <span>
-
-        </span>
-    </div>
-    <div class="col-xs-6 m-y-1">
-        <span>
-
-        </span>
-    </div>  
-    <div class="col-xs-8 m-y-1">
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingTwo">
-              <h6 class="panel-title">
-                <a class="color btn btn-primary collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Clothing Description
-                </a>
-              </h6>
-            </div>
-            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-
-            </div>
-        </div>
-    </div> 
-    </div>
-  </div>
-  <div class="tab-pane" id="offense" role="tabpanel">
-    <div class="container">
-    <div class="col-xs-12">
-      <div id="accordion" role="tablist" aria-multiselectable="true">
-      <div class="panel panel-default">
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingTwo">
-      <h4 class="panel-title">
-        <a class="color btn btn-primary collapsed" data-toggle="collapse" data-parent="#accordion" href="#detailed" aria-expanded="false" aria-controls="detailed">
-          Offense Detailed
-        </a>
-      </h4>
-    </div>
-    <div id="detailed" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-    </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  <div class="tab-pane" id="sighted" role="tabpanel">
-      <div class="container">
-
-  </div>
-  </div> -->
 </div>

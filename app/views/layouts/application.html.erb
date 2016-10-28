@@ -11,7 +11,11 @@
         <%= favicon_link_tag 'favicon.ico' %>
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     </head>
+    <% if current_page?(parking_path) || current_page?(landf_path) || current_page?(dispatcher_path) %>
+    <body class="droppages" onload="startTime()">
+    <% else %>
     <body onload="startTime()">
+    <% end %>
         <div class="height-keep navbar navbar-static-top navbar-dark bg-inverse shadow">
             <div class="container-fluid">
                 <div class="w navbar-exit">
@@ -27,7 +31,18 @@
                 <div class="w navbar-home">
                     <% if logged_in? == true %>
                         <% if current_page?(index_path) %>
-                            <%= link_to "Watchdog", index_path, class:"navbar-brand" %>
+                        <div class="btn-group">
+                            <button type="button" class="color btn w dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Menu
+                            </button>
+                            <div class="m-helper dropdown-menu">
+                                <%= link_to "Parking Violations (Alpha)", parking_path, class:"dropdown-item" %>
+                                <%= link_to "Lost and Found (Alpha)", landf_path, class:"dropdown-item" %>
+                                <%= link_to "Dispatcher (Alpha)", dispatcher_path, class:"dropdown-item" %>
+                            <div class="dropdown-divider"></div>
+                                <%= link_to "About", about_path, class:"dropdown-item" %>
+                            </div>
+                        </div>
                         <% else %>
                             <%= link_to "Home", index_path, class:"color btn btn-primary" %>
                             <!-- Back Button Loop -->
@@ -46,11 +61,14 @@
                                             <% if current_page?(events_path) || current_page?(listings_path) %>
                                                 | <%= link_to "Back", property_admin_path, class:"color btn btn-primary" %>
                                             <% else %>
-                                                <% if current_page?(:action => "new")  || current_page?(:action => "edit") %>
+                                                <% if current_page?(about_path) || current_page?(landf_path) || current_page?(dispatcher_path) || current_page?(parking_path) %>
                                                 <% else %>
-                                                    <% if current_page?(person_path) %>
-                                                        | <%= link_to "Back", active_path, class:"color btn btn-primary" %>
+                                                    <% if current_page?(:action => "new")  || current_page?(:action => "edit") %>
                                                     <% else %>
+                                                        <% if current_page?(person_path) %>
+                                                            | <%= link_to "Back", active_path, class:"color btn btn-primary" %>
+                                                        <% else %>
+                                                        <% end %>
                                                     <% end %>
                                                 <% end %>
                                             <% end %>
@@ -84,9 +102,9 @@
                 <ul class="nav navbar-nav pull-xs-left" id="weather"></ul>
             </div>             
             <div class="col-xs-6 text-xs-center">
-            	<p class="copyright">
+<!--            	<p class="copyright">
 					&copy; <script>document.write(new Date().getFullYear())</script> Wise Solutions
-				</p>
+				</p>-->
             </div>
                
             <div class="col-xs-3">
@@ -95,6 +113,16 @@
                 <ul class="pull-xs-right footer-hour nav navbar-nav"><li class="modal-row-hour w nav-item" data-toggle="modal" data-target=".hoursModal">Streetscape</li></ul>        
             </div>            
             <% else %>
+            <div class="col-xs-3">
+            </div>             
+            <div class="col-xs-6 text-xs-center">
+<!--            	<p class="copyright">
+					&copy; <script>document.write(new Date().getFullYear())</script> Wise Solutions
+				</p>-->
+            </div>
+               
+            <div class="col-xs-3">
+            </div>                
             <% end %>
         </div>
         <div class="modal forecastModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">

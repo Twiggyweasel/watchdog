@@ -26,7 +26,7 @@ before_action :require_user
     
     def security
         @random_pick = rand(Tip.count)
-            if @random_pick = 0
+            if @random_pick == 0
                 @random_pick = rand(Tip.count)
             else
         end
@@ -45,7 +45,6 @@ before_action :require_user
                 @totd = Tip.find(@random_pick)
                 end
             end
-
     end
  
 end

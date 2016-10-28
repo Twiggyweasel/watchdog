@@ -3,7 +3,7 @@
 <*-- On 9/26/2016               --->
 <div class="row v-c">
     <div class="col-xs-12 m-t-2">
-        <div class="card card-block shadow text-xs-center" style=" min-height:535px;">
+        <div class="card card-block text-xs-center" style="box-shadow: 0 0 6px rgba(0,0,0,.16),0 6px 12px rgba(0,0,0,.32); min-height:535px;">
             <div class="row">
                 <ul class="nav nav-pills p-l-1" role="tablist">
                     <% @department.each_with_index do |dept, index| %>
@@ -32,7 +32,7 @@
                                 <th class="text-xs-center">Outside Line</th>
                             </tr>
                         </thead>
-                        <tbody class="directory-tab">
+                        <tbody class="directory-tab"s>
                         <% dept.listing.each do |listing| %>     
                             <tr>
                                 <td><%= listing.location %></td>

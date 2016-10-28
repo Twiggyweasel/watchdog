@@ -25,6 +25,10 @@ Rails.application.routes.draw do
       get 'security' => 'pages#security'
       get 'property' => 'pages#property'
       get 'admin_home' => 'pages#admin'
+      get 'parking' => 'pages#parking'
+      get 'landf' => 'pages#landf'
+      get 'dispatcher' => 'pages#dispatcher'
+      get 'about' => 'pages#about'
         #Subdirectory
           get 'maps' => 'pages#maps'
           get 'venue' => 'pages#event'

@@ -90,7 +90,7 @@ Tip.create(id: 7, seeded: true, totd: "Most conflicts will be verbal, maintain y
 Tip.create(id: 8, seeded: true, totd: "Interact with the guests, ensure the guests of our presence for their safety")
 Tip.create(id: 9, seeded: true, totd: "If you see a problem, do not ignore it contact your dispatcher")
 Tip.create(id: 10, seeded: true, totd: "Be a problem solver, not the problem")
-Tip.create(id: 11, seeded: true, totd: "You may have the solution no one has thought of, don't keep quiet.")
+Tip.create(id: 11, seeded: true, totd: "You may have the solution no one has thought of, don't keep quiet")
 Tip.create(id: 12, seeded: true, totd: "Listen to your supervisors, they will guide you in the proper procedures")
 Tip.create(id: 13, seeded: true, totd: "Aid your fellow officers, if you see them struggling don't ignore it, your team is only as strong as it's weakest link")
 Tip.create(id: 14, seeded: true, totd: "It may be a slow day, but that is when you need to be your most vigilant")

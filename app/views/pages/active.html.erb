@@ -25,7 +25,12 @@
                     <p id="name"><%= person.name %></p> 
                     <p id="vitals"><%= person.height %> | <%= person.weight %> lb's</p> 
                     <h5>Reason for Issue</h5> 
-                    <p id="reason"><%= person.reason_short %></p> 
+                        <% if person.reason_short == "" || nil %>
+                            <p id="reason">No Offense Overview Available</p>
+                        <% else %>
+                            <p id="reason"><%= person.reason_short %></p>
+                        <% end %>                    
+                     
                 </div> 
             </div> 
         <% end %>      
@@ -56,37 +61,3 @@
       }); 
     }); 
 </script>
-
-
-
-<!--
-<div class="col-sm-3 col-md-2 sidebar active-page">
-    <h5 class="m-t-3 text-xs-left">Active Records</h5>
-<ul class="center m-t-1 nav nav-pills text-xs-center" role="tablist">
-    <% @people.each_with_index do |person, index| %>
-    <% if index == 0 %>
-  <li class="nav-item m-b-1">
-    <a class="nav-link active" data-toggle="tab" href="#<%= person.id %><%= index %>" role="tab"><%= person.name %></a>
-  </li>
-  <% else %>
-  <li class="nav-item m-b-1" style="margin-left: 0;">
-    <a class="nav-link" data-toggle="tab" href="#<%= person.id %><%= index %>" role="tab"><%= person.name %></a>
-  </li>
-    <% end %>
-    <% end %>  
-</div>
-
-<div class="row">
-    <div class="tab-content m-t-2">
-    <% @people.each_with_index do |person, index| %>
-    <% if index == 0 %>        
-    <div class="tab-pane active" id="<%= person.id %><%= index %>" role="tabpanel">
-        <span>TEST <%= person.name %></span>
-    </div>
-    <% else %>
-    <div class="tab-pane" id="<%= person.id %><%= index %>" role="tabpanel">
-        <span>TEST <%= person.name %></span>
-    </div>
-    <% end %>
-    <% end %>
-</div> -->
